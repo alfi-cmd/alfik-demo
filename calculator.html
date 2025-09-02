@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+
+        }
+
+        body {
+            background: linear-gradient(#9e0059, #da627d, #9e0059);
+        }
+
+        #main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #calculator {
+            height: 565px;
+            width: 500px;
+            background-color: #9e0059;
+            border: 5px solid;
+            border-radius: 40px;
+            filter: drop-shadow(0 0 15px black);
+
+        }
+
+        input {
+            width: 465px;
+            height: 100px;
+            margin-left: 10px;
+            margin-top: 15px;
+            border-radius: 20px;
+            font-size: 40px;
+            color: black;
+            text-align: right;
+            font-family: serif;
+            background-color: #fdfcdc;
+            filter: drop-shadow(0 0 15px black);
+        }
+
+        .ro1,
+        .ro2,
+        .ro3,
+        .ro4 {
+            background-color: #9e0059;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-evenly;
+            border-radius: 20PX;
+        }
+
+        .button {
+            height: 85px;
+            background-color: white;
+            width: 85px;
+            border-radius: 50%;
+            /* filter: drop-shadow(0  0 15px black); */
+            font-size: 25px;
+        }
+
+        .button:hover {
+            filter: drop-shadow(0 0 15px black);
+            transform: scale(1.1);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="calculator">
+            <input type="text" id="input" placeholder="0">
+            <div class="ro1">
+                <button class="button" style="background-color: orange;" onclick="equal()">=</button>
+                <button class="button" style="background-color: red;" onclick="AllClear()">AC</button>
+                <button class="button" style="background-color: red;" onclick="del()">DEL</button>
+                <button class="button" onclick="arithmetic('%')"
+                    style="color: aliceblue; background-color: black;">%</button>
+                <button class="button" onclick="arithmetic('/')"
+                    style="color: aliceblue; background-color: black;">/</button>
+
+            </div>
+            <div class="ro2">
+                <button class="button" onclick="calculator(9)">9</button>
+                <button class="button" onclick="calculator(8)">8</button>
+                <button class="button" onclick="calculator(7)">7</button>
+                <button class="button" style="color: white; background-color: gray;" onclick="calculator(0)">0</button>
+                <button class="button" onclick="arithmetic('*')"
+                    style="color: aliceblue; background-color: black;">*</button>
+            </div>
+            <div class="ro3">
+                <button class="button" onclick="calculator(6)">6</button>
+                <button class="button" onclick="calculator(5)">5</button>
+                <button class="button" onclick="calculator(4)">4</button>
+                <button class="button" style="color: white; background-color: gray;"
+                    onclick="calculator('00')">00</button>
+                <button class="button" onclick="arithmetic('-')"
+                    style="color: aliceblue; background-color: black;">-</button>
+            </div>
+            <div class="ro4">
+                <button class="button" onclick="calculator(3)">3</button>
+                <button class="button" onclick="calculator(2)">2</button>
+                <button class="button" onclick="calculator(1)">1</button>
+                <button class="button" onclick="calculator('.')"
+                    style="color: white; background-color: gray;">.</button>
+                <button class="button" onclick="arithmetic('+')"
+                    style="color: aliceblue; background-color: black;">+</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let input = document.getElementById('input')
+        let count = 0;
+        function arithmetic(num) {
+            if (count == 0) {
+                input.value += num;
+                count=1;
+            }
+        }
+        function calculator(num) {
+            input.value += num;
+            count=0;
+        }
+
+        function del() {
+            input.value = input.value.substring(0, input.value.length - 1);
+        }
+        function equal() {
+            input.value = eval(input.value)
+        }
+        function AllClear() {
+            input.value = ""
+        }
+    </script>
+</body>
+
+</html>
