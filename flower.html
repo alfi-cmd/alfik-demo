@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fragrance of flowers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .c1 h1{
+            color: #ff8fab;
+        }
+
+        .container{
+            display: flex;
+            justify-content: space-evenly;
+            background-color: aliceblue;
+            height: 80px;
+        }
+        .c1{
+           font-family: 'Times New Roman', Times, serif;
+           font-weight: 500px;
+           margin-left: -110px;
+           margin-top: 15px;
+        }
+        .c2{
+            margin-top: 15px;
+        }
+
+        .c2 li{
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px;
+        }
+        .c2 li:hover{
+            color: black;
+            cursor: pointer;
+            transform: translateY(-10px);
+            transform: scale(1.2);
+            border-radius: 2px;
+            font-weight: 600px;
+        }
+
+        .c3 li{
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px;
+        }
+        .c3{
+            margin-right: -100px;
+            margin-top: 15px;
+        }
+        main{
+            background-image: url(images/flower2.webp);
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+        }
+        .m1{
+            color: aliceblue;
+            margin-left: 80px;
+            padding-top: 200px;
+        }
+        .m2{
+            color: #caf0f8;
+            margin-left: 80px;
+        }
+        button{
+            background-color: rgb(183, 191, 198);
+            height: 50px;
+            width: 180px;
+            border: 4px solid black;
+            margin-left: 80px;
+            transition: all 0.5s ease-in-out;
+            margin-top: 20px;
+            
+        }
+        button:hover{
+        background-color: #6848db;
+        filter: drop-shadow(0 0 15px black);
+        color: aliceblue;
+        border-radius: 20px;
+        font-size: 20px;
+        }
+        .m4, .m8, .m10, .m13{
+            background-color: #e7c7cf;
+            color: aliceblue;
+            text-align: center;
+            margin-top: 5%;
+            filter: drop-shadow(0 0 5px gray);
+            height: 50px;
+            padding-top: 20px;
+            width: 1100px;
+            margin-left: 80px;   
+        }
+        .m5, .m6, .m7, .m9 {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20PX;
+            background-color: rgb(248, 248, 248);
+            
+        }
+        .a1, .a2, .a3, .b1, .b2, .b3, .d1, .d2, .d3{
+            text-align: center;
+        }
+        
+        .a1:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .a2:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black); 
+        }
+        .a3:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .b1:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .b2:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .b3:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .d1:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .d2:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .d3:hover{
+            height: 100px;
+            transform: scale(1.1);
+            transition: all 0.4s ease-in-out;
+            filter: drop-shadow(0 0 10px black);
+        }
+        .e4{
+            margin-top: 20px;
+            background-color: #ff8fab;
+            width: 30px;
+            height: 60px;
+            animation: ani 1.5s ease-in-out 0s infinite normal;
+            border-radius: 30%;
+        }
+        .e4:hover{
+                width: 250px;
+                height: 60px;
+                margin-top: 20px;
+                background-color: #ff8fab; 
+                filter: drop-shadow(0 0 5px gray);
+                transform: scale(1.1);
+                border-radius: 20px;
+                transition: all 0.9s ease-in-out;
+                /* text-align: center; */
+        }
+
+            .m11{
+                display: flex;
+                justify-content: space-around;
+                background-color: rgb(248, 248, 248);
+            }
+            .f1 img{
+                width: 500px;
+                height: 200px;
+                margin-left: 80px;
+                margin-top: 20px;
+                box-shadow: none;
+            }
+            .f2{
+                text-align: left;
+                margin-top: 20px;
+            }
+            .m12{
+                display: flex;
+                justify-content: space-around;
+                background-color: rgb(248, 248, 248);
+                color: black;
+                text-shadow: 2px black;
+                margin-top: 40px;
+            }
+            .g1, .g2, .g3, .g4{
+                text-align: center;
+                height: 100px;
+                width: 270px;
+                text-decoration: none;
+                padding: 5px;
+                background-color: white
+
+            }
+            .m12 i{
+                margin-top: 30px;
+            }
+            .m14{
+                display: flex;
+                justify-content: space-evenly;
+                background-color: rgb(248, 248, 248);
+                margin-top: 20px;
+                height: 400px;
+            }
+            .m15{
+                display: flex;
+                justify-content: space-evenly;
+                background-color: rgb(248, 248, 248);
+                margin-top: 20px;
+                height: 280px;
+            }
+    </style>
+    
+</head>
+<body>
+    <header>
+      <div class="container">
+        <div class="c1"><h1>FLOWER</h1></div>
+        <div class="c2">
+            <ul>
+                <li> <a href="#Home"></a>Home</li>
+                <li> <a href="#about"></a>About</li>
+                <li> <a href="#products"></a>Products</li>
+                <li> <a href="#review"></a>Review</li>
+                <li> <a href="#contact"></a>Contact</li>
+            </ul>
+        </div>
+        <div class="c3">
+            <ul>
+                <li><i class="fa-solid fa-heart fa-beat fa-2xl" style="color: #be1e13;"></i></li>
+                <li><i class="fa-solid fa-cart-shopping fa-fade fa-2xl" style="color: #6848db;"></i></li>
+                <li><i class="fa-solid fa-user-tie fa-beat-fade fa-2xl" style="color: #14c2a5;"></i></li>
+            </ul>
+        </div>
+      </div>
+    </header>
+
+    <main id="#">
+        <div class="m1"><h1>FRESH FLOWERS</h1><H2>NATURAL AND  BEAUTIFUL  </H2></div><br>
+        <div class="m2"><p>Lorem ipsum dolor sit, amet consectetur <br> adipisicing elit. Dolor sit nobis ea fugiat tenetur. <br> Nam eligendi ad, quis aut, repudiandae <br> saepe atque dolorum est, cumque corrupti accusantium <br> reprehenderit doloribus.</p></div>
+        <div class="m3"> <a href="/checkout.html"><button>SHOP NOW</button></a></div>
+    </main>
+
+    <div class="m4" id="product"><h1>LATEST PRODUCTS</h1></div>
+    <div class="m5">
+        <div class="a1"><img src="images/b10.jpg" alt=""  width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+        <div class="a2"><img src="images/b2.jpeg" alt=""  width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+        <div class="a3"><img src="images/b11.jpeg" alt="" width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+    </div>
+
+    <div class="m6">
+        <div class="b1"><img src="images/b12.jpeg" alt=""  width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+        <div class="b2"><img src="images/b13.jpeg" alt=""  width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+        <div class="b3"><img src="images/b14.jpeg" alt="" width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+    </div>
+
+    <div class="m7">
+        <div class="d1"><img src="images/b15.jpeg" alt=""  width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+        <div class="d2"><img src="images/b16.jpeg" alt=""  width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+        <div class="d3"><img src="images/b17.jpeg" alt="" width="250px" height="280px">
+            <p><h2 style="color: #ff8fab;" >Flower Pot </h2><h3 style="color: gray;">$15.9</h3></p></div>
+    </div>
+
+    <div class="m8" id="review"><h1>CUSTOMER'S REVIEW</h1></div>
+
+    <div class="m9">
+        <div class="e1">
+            <p style="text-align: left;"><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"m></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i></p>
+            <p>Lorem ipsum dolor sit amet consectetur <br> elit. Tenetur animi debitis atque ab magni <br>consequatur unde harum  <br> minima obcaecati voluptatibus fuga  <br>ad, cum exercitationem. Accusantium,</p>
+            <div class="e4"><i class="fa-solid fa-heart fa-beat fa-2xl" style="color: #be1e13;"></i><p style="color: gray;">Happy Customer.........</p></div>
+        </div>
+
+        <div class="e2">
+            <p style="text-align: left;"><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"m></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i></p>
+            <p>Lorem ipsum dolor sit amet consectetur <br> elit. Tenetur animi debitis atque ab magni <br>consequatur unde harum  <br> minima obcaecati voluptatibus fuga  <br>ad, cum exercitationem. Accusantium,</p>
+            <div class="e4"><i class="fa-solid fa-heart fa-beat fa-2xl" style="color: #be1e13;"></i><p style="color: gray;">Happy Customer.........</p></div>
+        </div>
+
+        <div class="e3">
+            <p style="text-align: left;"><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"m></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i><i class="fa-solid fa-star fa-beat-fade" style="color: #d016ae;"></i></p>
+            <p>Lorem ipsum dolor sit amet consectetur <br> elit. Tenetur animi debitis atque ab magni <br>consequatur unde harum  <br> minima obcaecati voluptatibus fuga  <br>ad, cum exercitationem. Accusantium,</p>
+            <div class="e4"><i class="fa-solid fa-heart fa-beat fa-2xl" style="color: #be1e13;"></i><p style="color: gray;">Happy Customer.........</p></div>
+        </div></div>
+
+        <div class="m10" id="about"><h1>ABOUT US</h1></div>
+           <div class="m11">
+            <div class="f1"><img src="images/tool 1.jpeg" alt="tool"></div>
+            <div class="f2"><h1 style="color: #ff8fab;">Why Choose Us</h1> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Perferendis deleniti iste voluptatum, natus, qui reiciendis aliquid <br> molestias odio modi quisquam quas, ullam distinctio numquam <br> sequi beatae. Tenetur similique voluptatum temporibus. <br>
+            Quae a eius at sequi eveniet dolorum molestias saepe minima <br> numquam dolore adipisci consequuntur, non fugiat aut <br> nihil fugit aliquam inventore unde hic illo ipsa <br>sapiente impedit laborum pariatur? Iure?</p> <p><button>Learn More</button></p>
+        </div></div>
+
+        <div class="m12">
+            <div class="g1">Free Shipping<br>on all orders <br><i class="fa-solid fa-globe fa-2xl" style="color: #4e87e9;"></i></div>
+            <div class="g2">10 Days Return<br>Moneyback Gurantee <br><i class="fa-solid fa-money-bill-trend-up fa-2xl" style="color: #299e56;"></i></div>
+            <div class="g3">Offer & Gift<br>On all Orders <br><i class="fa-solid fa-gift fa-2xl" style="color: #e25ab7;"></i></div>
+            <div class="g4">Secure Payments<br>Protected by Paypal <br><i class="fa-solid fa-comments-dollar fa-2xl" style="color: #6e81dd;"></i></div>
+        </div>
+
+        <div class="m13" id="contact"><h1>Contact Us</h1></div>
+         <div class="m14">
+            <div class="j1">
+                <h2 style="color: aliceblue;">About you</h2><br>
+                <p><input type="name" placeholder="Your Name" size="60px"></p><br>
+                <p><input type="email" placeholder="Email" size="60px"></p><br>
+                <p><input type="name" placeholder="Number" size="60px"></p><br>
+                <p><input type="country" placeholder="Country" size="60px"></p><br>
+                <!-- <p><input type="address" placeholder="Address" size="60px"></p><br> -->
+                <p><textarea name="Address" id="" placeholder="Address" size="50px"></textarea></p>
+                <p><button>Send Message</button></p>
+            </div>
+            <div class="j2"><img src="images/contact.webp" alt="contact" width="500px" height="350px"></div>
+         </div>
+
+         <footer>
+
+         <div class="m15">
+            <div class="k1">
+                <h1>Quick links</h1><br>
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Product</li>
+                    <li>Review</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div class="k2">
+                <h1>Extra links</h1><br>
+                <ul>
+                    <li>My account</li>
+                    <li>My order</li>
+                    <li>My favourite</li>
+                </ul>
+            </div>
+            <div class="k3">
+                <h1>Locations</h1><br>
+                <ul>
+                    <li>India</li>
+                    <li>USA</li>
+                    <li>Japan</li>
+                    <li>France</li>
+                    <li>German</li>
+                </ul>
+            </div>
+            <div class="k4">
+                <h1>Contact Info.</h1><br>
+                <ul>
+                    <li>+233-233-6789</li>
+                    <li>fragrance.of.floweers@gmail.com</li>
+                    <li>Mumbai, India-477100</li><br>
+                    <p><i class="fa-brands fa-instagram fa-beat-fade fa-2xl" style="color: #bc5bbe;" ></i></p><br>
+                   <p><i class="fa-brands fa-facebook fa-beat-fade fa-2xl" style="color: #3566bb;"></i></p><br>
+                    <p><i class="fa-brands fa-whatsapp fa-beat-fade fa-2xl" style="color: #2acf3e;"></i></p><br>
+                    <p><i class="fa-brands fa-twitter fa-beat-fade fa-2xl" style="color: #1f4d9e;"></i></p>
+                </ul>
+            </div>
+         </div>
+         </footer>
+
+         <script>
+  let cart = [];
+  let wishlist = [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+  }
+
+  function addToWishlist(name, price) {
+    // Prevent duplicate items
+    if (!wishlist.some(item => item.name === name)) {
+      wishlist.push({ name, price });
+      updateWishlist();
+    } else {
+      alert(name + " is already in your wishlist!");
+    }
+  }
+
+  function updateCart() {
+    let cartList = document.getElementById("cart-items");
+    cartList.innerHTML = "";
+    cart.forEach(item => {
+      let li = document.createElement("li");
+      li.textContent = `${item.name} - $${item.price}`;
+      cartList.appendChild(li);
+    });
+  }
+
+  function updateWishlist() {
+    let wishlistList = document.getElementById("wishlist-items");
+    wishlistList.innerHTML = "";
+    wishlist.forEach(item => {
+      let li = document.createElement("li");
+      li.textContent = `${item.name} - $${item.price}`;
+      wishlistList.appendChild(li);
+    });
+  }
+</script>
+</body>
+</html>

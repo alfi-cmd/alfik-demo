@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - find your interest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: black; 
+        }
+
+        main {
+            display: flex;
+        }
+
+        .navimg {
+            font-weight: bolder;
+            color: lightgrey;
+            margin: 15px;
+        }
+
+        nav {
+            background-color: black;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            color: lightgrey;
+        }
+
+        nav ul li {
+            text-decoration: none;
+            color: lightgrey;
+            display: inline-block;
+            margin-top: 30px;
+            margin-left: 20px;
+        }
+
+        input {
+            height: 40px;
+            border-radius: 20px;
+            background-color: rgb(48, 45, 45);
+            margin-top: -30px;
+            font-weight: bolder;
+        }
+
+        li button {
+            width: 130px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: lightgrey;
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+            background-color: transparent;
+            color: #000;
+        }
+
+        .div1 {
+            background-color: rgb(48, 45, 45);
+            height: 502x;
+            width: 300px;
+            margin-left: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .div2 {
+            background-color: rgb(48, 45, 45);
+            height: 500px;
+            width: 940px;
+            margin-left: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        #list1,
+        #list3,
+        #list4,
+        #list5,
+        #list6,
+        #list7,
+        #list8,
+        #list9,
+        #list10 {
+            background-color: rgb(48, 45, 45);
+            text-align: center;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* #list1 img{
+            background-color: rgb(48, 45, 45);
+            margin-top: 30px;
+            height: 180px;
+            width: 150px;  
+        } */
+        #list2 {
+            background-color: rgb(48, 45, 45);
+            text-align: center;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* #list2 img{
+            background-color: rgb(48, 45, 45);
+            margin-top: 30px;
+            height: 180px;
+            width: 150px;  
+        } */
+        #songlist2 {
+            display: flex;
+            background-color: rgb(48, 45, 45);
+            justify-content: space-around;
+        }
+
+        #songlist {
+            display: flex;
+            background-color: rgb(48, 45, 45);
+            justify-content: space-around;
+        }
+
+        #list3 {
+            background-color: rgb(48, 45, 45);
+            text-align: center;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        img {
+            background-color: rgb(48, 45, 45);
+            margin-top: 30px;
+            /* margin-right: 75%; */
+            height: 180px;
+            width: 150px;
+        }
+
+        #item {
+            background-color: rgb(48, 45, 45);
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #item img {
+            background-color: rgb(48, 45, 45);
+            text-align: center;
+            /* height: 200px;
+            width: 220px;  */
+            margin-bottom: -6px;
+
+        }
+
+        #gif img {
+            height: 50px;
+            width: 100px;
+            align-items: center;
+            margin-left: 100px;
+        }
+
+        #bars {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(48, 45, 45);
+            cursor: pointer;
+            margin-top: 35px;
+        }
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+        }
+        .slider{
+            width: 280px;
+            margin-left: 10px;
+            margin-top: 20px;
+        }
+         .volume-slider {
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+        #audio{
+            background-color: black;
+        } 
+    </style>
+</head>
+
+<body>
+    <!-- header of the login and search bar  -->
+
+    <nav>
+        <ul>
+            <li class="navimg"><i class="fa-brands fa-spotify fa-beat fa-2xl" style="color: #138e0b;"> </i>Spotify</li>
+            <li><i class="fa-solid fa-house fa-2xl" style="color: #f6f7f9;"></i></li>
+            <li><input type="text" placeholder="What do you want to play?" size="70"><i
+                    class="fa-solid fa-magnifying-glass fa-2xl" style="color: #f7f7f8;"></i></li>
+            <li>Premium support dowmload |</li>
+            <li>instal app <i class="fa-brands fa-instalod" style="color: #fafafa;"></i></li>
+            <li ><button id="login"><a href="spoform.html">Login</a></button></li>
+        </ul>
+    </nav>
+
+    <!-- main board of the song list  -->
+
+    <main>
+
+        <div class="div1" style="color: white; font-size: 1.5rem; font-weight: bolder; text-align: left;"><span
+                style="margin-left: 20px; background-color: rgb(48, 45, 45);   ">your interest is here !!</span>
+
+            <div id="item"><img src="images/song1.jpg" alt="song 1"><br>RAABTA</div>
+            <!-- <div id="gif"><img src="/images/songgiif.gif" alt=""></div> -->
+             <!-- <div class="time-display">
+            <span id="currentTime">0:00</span>
+            <span id="totalTime">2:00</span>
+        </div> -->
+        <audio id="audio" controls><source src="music/raabta.mp3"></audio>
+            <div id="bars">
+                <i class="fa-solid fa-backward-fast fa-xl" style="color: #ffffff;"></i>
+                <i class="fa-solid fa-play fa-xl" style="color: #f5f9ff;" id="masterPlay"></i>
+                <i class="fa-solid fa-forward-fast fa-xl" style="color: #ffffff;"></i>
+            </div>
+        </div>
+
+
+        <div class="div2"> <span
+                style="font-size: 1.7rem; font-weight: bolder; background-color: rgb(48, 45, 45); margin-right: 75%;">Trending
+                song </span>
+
+            <!-- list of the songs -->
+            <div id="songlist">
+                <div id="list1"><img id="z" src="images/song1.jpg" alt="song 1"><br>RAABTA               
+                <audio id="a1"  src="music/raabta.mp3" > </audio> </div>
+
+
+                <div id="list2"><img id="z1" src="images/song2.jpg" alt="song 1"><br>BANG BANG
+                <audio id="a2" src="music/[SPOTDOWNLOADER.COM] Bang Bang.mp3"></audio></div>
+
+
+                <div id="list3"><img id="z2" src="images/song3.jpg" alt="song 1"><br>LUKA CHUPI
+                <audio id="a3" src="music/[SPOTDOWNLOADER.COM] Coca Cola (From _Luka Chuppi_).mp3"></audio></div>
+
+
+                <div id="list4"><img id="z3" src="images/song4.jpg" alt="song 1"><br>BLUE EYES
+                <audio id="a4" src="music/[SPOTDOWNLOADER.COM] Blue Eyes.mp3"></audio></div>
+
+                <div id="list5"><img id="z4" src="images/song5.jpg" alt="song 1"><br>NAZAR NA LAG JAYE
+                <audio id="a5" src="music/[SPOTDOWNLOADER.COM] Nazar Na Lag Jaaye (From _Stree_).mp3"></audio></div>
+            </div>
+
+            <div id="songlist2">
+                <div id="list6"><img id="z5" src="images/song6.jpg" alt="song 1"><br>DIL TOU BACHA HAI
+                <audio id="a6" src="music/raabta.mp3"></audio></div>
+
+
+                <div id="list7"><img id="z6" src="images/song7.jpg" alt="song 1"><br>DESPACITO
+                <audio id="a7" src="music/[SPOTDOWNLOADER.COM] Despacito.mp3"></audio></div>
+
+                <div id="list8"><img id="z7" src="images/song8.jpg" alt="song 1"><br>LET ME LOVE YOU
+                <audio id="a8" src="music/[SPOTDOWNLOADER.COM] Let Me Love You.mp3"></audio></div>
+
+
+                <div id="list9"><img id="z8" src="images/song 9.jpg" alt="song 1"><br>HASS HASS 
+                <audio id="a9" src="music/[SPOTDOWNLOADER.COM] Hass Hass.mp3"></audio></div>
+
+
+                <div id="list10"><img id="z9" src="images/song 10.jpg" alt="song 1"><br>LEMONADE
+                <audio id="a10" src="music/[SPOTDOWNLOADER.COM] Lemonade.mp3"></audio></div>
+            </div>
+        </div>
+    </main>
+
+   
+   
+
+
+    <script>
+         
+         
+// 1.
+        let p1 = document.getElementById("a1");
+        let b1 = document.getElementById("z");
+        var c1=1;
+        b1.addEventListener("click", () => {
+            if(c1){
+                p1.play();
+                c1=0;
+            }
+            else{
+                p1.pause();
+                c1=1;
+            }})
+// 2.
+        let p2 = document.getElementById("a2");
+        let b2 = document.getElementById("z1");
+        var c2=1;
+        b2.addEventListener("click", () => {
+            if(c2){
+                p2.play();
+                c2=0;
+            }
+            else{
+                p2.pause();
+                c2=1;
+            }})
+// 3.
+        let p3 = document.getElementById("a3");
+        let b3 = document.getElementById("z2");
+        var c3=1;
+        b3.addEventListener("click", () => {
+            if(c3){
+                p3.play();
+                c3=0;
+            }
+            else{
+                p3.pause();
+                c3=1;
+            }})
+// 4.
+        let p4 = document.getElementById("a4");
+        let b4 = document.getElementById("z3");
+        var c4=1;
+        b4.addEventListener("click", () => {
+            if(c4){
+                p4.play();
+                c4=0;
+            }
+            else{
+                p4.pause();
+                c4=1;
+            }})
+      
+// 5.
+        let p5 = document.getElementById("a5");
+        let b5 = document.getElementById("z4");
+        var c5=1;
+        b5.addEventListener("click", () => {
+            if(c5){
+                p5.play();
+                c5=0;
+            }
+            else{
+                p5.pause();
+                c5=1;
+            }})
+// 6.
+        let p6 = document.getElementById("a6");
+        let b6 = document.getElementById("z5");
+        var c6=1;
+        b6.addEventListener("click", () => {
+            if(c6){
+                p6.play();
+                c6=0;
+            }
+            else{
+                p6.pause();
+                c6=1;
+            }})
+// 7.
+        let p7 = document.getElementById("a7");
+        let b7 = document.getElementById("z6");
+        var c7=1;
+        b7.addEventListener("click", () => {
+            if(c7){
+                p7.play();
+                c7=0;
+            }
+            else{
+                p7.pause();
+                c7=1;
+            }})
+
+// 8.
+        let p8 = document.getElementById("a8");
+        let b8 = document.getElementById("z7");
+        var c8=1;
+        b8.addEventListener("click", () => {
+            if(c8){
+                p8.play();
+                c8=0;
+            }
+            else{
+                p8.pause();
+                c8=1;
+            }})
+// 9.
+        let p9 = document.getElementById("a9");
+        let b9 = document.getElementById("z8");
+        var c9=1;
+        b9.addEventListener("click", () => {
+            if(c9){
+                p9.play();
+                c9=0;
+            }
+            else{
+                p9.pause();
+                c9=1;
+            }})
+// 10.
+        let p10 = document.getElementById("a10");
+        let b10 = document.getElementById("z9");
+        var c10=1;
+        b10.addEventListener("click", () => {
+            if(c10){
+                p10.play();
+                c10=0;
+            }
+            else{
+                p10.pause();
+                c10=1;
+            }})
+
+  let masterPlay = document.getElementById('masterPlay')
+           masterPlay.addEventListener("click", ()=>{
+            if(audioElement.paused){
+                audioElement.play();
+                masterPlay.classList.remove("fa-play")
+                masterPlay.classList.add("fa-pause")
+            }
+            else{
+                 audioElement.pause();
+                masterPlay.classList.remove("fa-pause")
+                masterPlay.classList.add("fa-play")
+            }
+           })
+
+        const audio = document.getElementById("audio");
+        const slider = document.getElementById("volume-slider");
+        slider.addEventListener("input", ()=> {
+            audio.volume = slider.value;
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: black;
+        }
+        #container{
+            height: 413px;
+            width: 350px;
+            background-color: rgb(48, 45, 45);
+            text-align: center;
+            align-items: center;
+            margin-top: 50px;
+            margin-left: 450px;
+            border: 5px solid #138e0b;
+            border-radius: 20px;
+        }
+        button{
+            height: 40px;
+            width: 150px;
+            margin-top: 22px;
+            border-radius: 20px;
+            background-color: #138e0b;
+            color: white;
+            font-weight: bolder;
+            filter: drop-shadow(0 0 15px white);
+        }
+        input{
+              margin: 18px;
+              height: 35px;
+              border-radius: 7px;
+              color: black;
+        }
+        .google{
+            /* background-color: black; */
+            color: aliceblue;
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            margin-left: 70px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 2px solid white;
+            align-items: center;
+        }
+        .para{
+            display: flex;
+            justify-content: space-evenly;
+            color: white;
+        }
+        i{
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button>LOGIN HERE!!</button><br>
+        <input type="text" placeholder="Enter Username" size="40px"> <br>
+        <input type="password" placeholder="Enter password" size="40px"><br>
+        <div class="para"><p>forget password?</p><p>Create an account?</p></div>
+
+        <div class="google">Login with Google <i class="fa-brands fa-google fa-xl" style="color: #11e41f;"></i></div>
+        <div class="google">Login with Facebook <i class="fa-brands fa-facebook fa-xl" style="color: #195dd2;"></i></div>    
+        <div class="google">Login with Facebook <i class="fa-brands fa-apple fa-xl" style="color: #f8f9fc;"></i></div>
+         
+
+    </div>
+</body>
+</html>
