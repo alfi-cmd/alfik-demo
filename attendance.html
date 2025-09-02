@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Attendance Marking</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #fff;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #0003;
+    }
+    .attendance-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #0002;
+      padding: 30px 40px;
+      margin-bottom: 30px;
+      width: 370px;
+      max-width: 90vw;
+    }
+    .student-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f5f7fa;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 8px #0001;
+      transition: background 0.3s;
+    }
+    .student-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .student-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .student-roll {
+      font-size: 0.95rem;
+      color: #666;
+    }
+    .attendance-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .attendance-btn {
+      padding: 7px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+      outline: none;
+    }
+    .present {
+      background: #4caf50;
+      color: #fff;
+    }
+    .present.selected {
+      box-shadow: 0 0 0 2px #4caf5055;
+      background: #388e3c;
+    }
+    .absent {
+      background: #f44336;
+      color: #fff;
+    }
+    .absent.selected {
+      box-shadow: 0 0 0 2px #f4433655;
+      background: #b71c1c;
+    }
+    .summary {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 18px 24px;
+      font-size: 1.1rem;
+      color: #222;
+      margin-bottom: 30px;
+      width: 370px;
+      max-width: 90vw;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    @media (max-width: 500px) {
+      .attendance-container, .summary {
+        padding: 18px 6vw;
+        width: 98vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Attendance</h1>
+  <div class="attendance-container" id="attendanceContainer">
+    <!-- Student cards will be injected here -->
+  </div>
+  <div class="summary" id="summary">
+    Present: 0 | Absent: 0 | Total: 0
+  </div>
+
+  <script>
+    // Sample student data
+    const students = [
+      { name: "Ayesha Khan", roll: "101" },
+      { name: "Bilal Ahmed", roll: "102" },
+      { name: "Fatima Noor", roll: "103" },
+      { name: "Hamza Ali", roll: "104" },
+      { name: "Sara Malik", roll: "105" }
+    ];
+
+    // Attendance state
+    const attendance = {};
+
+    // Render student cards
+    function renderStudents() {
+      const container = document.getElementById('attendanceContainer');
+      container.innerHTML = '';
+      students.forEach((student, idx) => {
+        const card = document.createElement('div');
+        card.className = 'student-card';
+
+        const info = document.createElement('div');
+        info.className = 'student-info';
+        info.innerHTML = `<span class="student-name">${student.name}</span>
+                          <span class="student-roll">Roll: ${student.roll}</span>`;
+
+        const btns = document.createElement('div');
+        btns.className = 'attendance-buttons';
+
+        const presentBtn = document.createElement('button');
+        presentBtn.className = 'attendance-btn present';
+        presentBtn.textContent = 'Present';
+        presentBtn.onclick = () => markAttendance(idx, 'present');
+
+        const absentBtn = document.createElement('button');
+        absentBtn.className = 'attendance-btn absent';
+        absentBtn.textContent = 'Absent';
+        absentBtn.onclick = () => markAttendance(idx, 'absent');
+
+        btns.appendChild(presentBtn);
+        btns.appendChild(absentBtn);
+
+        card.appendChild(info);
+        card.appendChild(btns);
+
+        container.appendChild(card);
+      });
+      updateButtons();
+      updateSummary();
+    }
+
+    // Mark attendance
+    function markAttendance(idx, status) {
+      attendance[idx] = status;
+      updateButtons();
+      updateSummary();
+    }
+
+    // Update button styles based on attendance
+    function updateButtons() {
+      const cards = document.querySelectorAll('.student-card');
+      cards.forEach((card, idx) => {
+        const presentBtn = card.querySelector('.present');
+        const absentBtn = card.querySelector('.absent');
+        presentBtn.classList.toggle('selected', attendance[idx] === 'present');
+        absentBtn.classList.toggle('selected', attendance[idx] === 'absent');
+      });
+    }
+
+    // Update summary
+    function updateSummary() {
+      const total = students.length;
+      let present = 0, absent = 0;
+      Object.values(attendance).forEach(status => {
+        if (status === 'present') present++;
+        if (status === 'absent') absent++;
+      });
+      document.getElementById('summary').textContent =
+        `Present: ${present} | Absent: ${absent} | Total: ${total}`;
+    }
+
+    // Initial render
+    renderStudents();
+  </script>
+</body>
+</html>
