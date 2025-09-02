@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic tac toe</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            background: linear-gradient(black, coral,black);
+            text-align: center;
+            align-items: center;
+        }
+        .hide{
+            display: none;
+        }
+        .container{
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .game{
+            height: 60vmin;
+            width: 60vmin;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5vmin;
+            text-align: center;
+        }
+
+        .box{
+            height: 18vmin;
+            width: 18vmin;
+            /* display: flex; */
+            flex-wrap: 10vmin;
+            text-align: center;
+            border: 4px solid chocolate;
+            border-radius: 10px;
+            font-size: 14vmin;
+            align-items: center;
+            background-color: antiquewhite;
+            filter: drop-shadow(0 0 10px black);
+            color: rgb(112, 37, 156);
+        }
+        .new{
+            height: 8vmin;
+            width: 20vmin;
+            border-radius: 10px;
+            border: 2px solid white;
+            background-color: coral;
+            color: black;
+            font-weight: bolder;
+            filter: drop-shadow(0 0 15px white);
+        }
+        #newgame{
+            height: 8vmin;
+            width: 20vmin;
+            border-radius: 10px;
+            border: 2px solid white;
+            background-color: coral;
+            color: black;
+            font-weight: bolder;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 15px white);
+        }
+        .msg p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      font-size: 30px;
+      font-weight: 700;
+      color: black;
+      letter-spacing: 7px;
+      font-family: "Segoe UI";
+      text-shadow: 1px 1px 3px #e70808;
+      filter: drop-shadow(0 0 20px rgb(147, 240, 215));
+      /* display: none; */
+      text-align: center;
+}
+    </style>
+</head>
+<body>
+      <div class="msg hide">
+        <p id="win">Congratulation, you are Winner</p>
+      </div>
+     
+        <!-- <button class="new">NEW GAME</button> -->
+    <h1 style="color: chocolate;">TIC TAC TOE</h1>
+    <div class="container">
+        <div class="game">
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+    </div></div>
+
+    <button class="new" type="reset">RESET</button>
+    
+
+    <script>
+    let boxes = document.querySelectorAll('.box');
+    let turn = true; //player1=X , player1=0
+    let Btn = document.querySelector('.new');
+    let msgContainer = document.querySelector('.msg')
+    let massage = document.querySelector('#win')
+    const winpettern = [
+      [0, 1, 2],
+      [0, 3, 6],
+      [0, 4, 8],
+      [1, 4, 7],
+      [2, 5, 8],
+      [2, 4, 6],
+      [3, 4, 5],
+      [6, 7, 8],
+    ];
+
+    const NewGame = () => {
+      turn = true;
+      enabledBox();
+      msgContainer.classList.add('hide')
+     
+  }
+
+   let disabledBox = () => {
+      for (let box of boxes) {
+        box.disabled = true;
+      }
+    }
+
+    let enabledBox = () => {
+      for (let box of boxes) {
+        box.disabled = false;
+        box.innerHTML = ""
+      }
+    }
+
+     boxes.forEach((box) => {
+      box.addEventListener("click", () => {
+        if (turn) {
+          box.innerHTML = "X"
+          // box.classList.add("X")
+          turn = false;
+        } else {
+          box.innerHTML = "O";
+          // box.classList.add("O")
+          turn = true;
+        }
+        box.disabled = true;
+        checkWinner();
+      });
+    });
+
+     let showWinner = (winner) => {
+      massage.innerHTML = `Congratulation,<br> Winner is ${winner} `
+      msgContainer.classList.remove('hide')
+      disabledBox();
+    }
+
+    // let checkWinner = () => {
+    //   for (let pattern of winpettern) {
+    //     let pos1 = boxes[pattern[0]].innerText;
+    //     let pos2 = boxes[pattern[1]].innerText;
+    //     let pos3 = boxes[pattern[2]].innerText;
+
+    //     if (pos1 != "" && pos2 != "" && pos3 != "") {
+    //       if (pos1 === pos2 && pos2 === pos3) {
+    //         console.log("winner", pos1);
+    //         showWinner(pos1);
+    //       }
+    //     }
+    //   }
+    // }; 
+
+      let checkWinner = () => {
+      for (let pattern of winpettern) {
+        let pos1 = boxes[pattern[0]].innerText;
+        let pos2 = boxes[pattern[1]].innerText;
+        let pos3 = boxes[pattern[2]].innerText;
+
+        if (pos1 !== "" && pos2 !== "" && pos3 !== "") {
+          if (pos1 === pos2 && pos2 === pos3) {
+            console.log("winner", pos1);
+            showWinner(pos1);
+            return; // Exit if we found a winner
+          }
+        }
+      }
+
+        // 👉 Check for draw
+      let isDraw = true;
+      for (let box of boxes) {
+        if (box.innerText === "") {
+          isDraw = false;
+          break;
+        }
+      } 
+
+      if (isDraw) {
+        console.log("Match Draw");
+        massage.innerHTML = "Match is Draw : <br> Paly Again...";
+        msgContainer.classList.remove('hide');
+        disabledBox();
+      }
+    };
+    Btn.addEventListener("click", NewGame)
+
+
+
+
+ 
+
+    </script>
+</body>
+</html>
