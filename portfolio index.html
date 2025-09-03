@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: sans-serif;
+        }
+        .c1 h1{
+            color: gray;
+            margin-bottom: 15px;
+        }
+        .container{
+            display: flex;
+            justify-content: space-evenly;
+            background-color: aliceblue;
+            height: 110px;
+            width: 1300px;
+            align-items: center;
+            /* position: fixed; */
+            filter: drop-shadow(0 0 15px black);
+            z-index: 1;
+        }
+        .c1{
+           font-family: 'Times New Roman', Times, serif;
+           font-weight: 500px;
+           margin-left: -110px;
+           margin-top: 15px;
+        }
+        .c2 li{
+            /* margin-top: 50px; */
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px;
+            transition: all 0.5s ease-in-out;
+            font-size: 1.5rem;
+        }
+        a{
+            text-decoration: none;
+            list-style: none;
+            color: black;
+        }
+        .c2 li:hover{
+            background-color: lightgray;
+            color: aliceblue;
+            cursor: pointer;
+            transform: translateY(-10px);
+            transform: scale(1.2);
+            border-radius: 2px;
+            font-weight: 600px;
+        }      
+        .c3 li {
+            text-decoration: none;
+            display: inline-block;
+            margin: 15px;
+        }
+        .c3{
+            margin-right: -100px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        i:hover{
+            filter: drop-shadow(0 0 15px black);
+            transform: scale(1.2);
+
+        }
+        main{
+            background-image: url(images/background.jpg);
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            width: 1300px;
+        }
+        .m1{
+            color: black;
+            margin-left: 150px;
+            padding-top: 200px;
+        }
+        .m2{
+            color: black;
+            margin-left: 150px;
+        }
+        button{
+            background-color: black;
+            color: white;
+            height: 50px;
+            width: 150px;
+            border: 4px solid gray;
+            margin-left: 150px;
+            transition: all 0.9s ease-in-out;
+            margin-top: 20px;
+            
+        }
+        button:hover{
+        background-color: lightgray;
+        filter: drop-shadow(0 0 15px black);
+        color: black;
+        border-radius: 20px;
+        font-size: 20px;
+        width: 250px;
+        border: 4px solid lightblue;
+        }
+        .m1 h1{
+            font-size: 4rem;
+        }
+        h2{
+            font-size: 2.5rem;
+        }
+        .m4, .m8, .m10, .m13, .a1{
+            background-color: lightgray;
+            color: aliceblue;
+            text-align: center;
+            margin-top: 2%;
+            filter: drop-shadow(0 0 5px gray);
+            height: 50px;
+            padding-top: 20px;
+            width: 1100px;
+            margin-left: 80px;   
+        }
+        .a1{
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            margin-top: 2%;
+            filter: drop-shadow(0 0 5px gray);
+            height: 300px;
+            padding-top: 20px;
+            width: 1100px;
+            margin-left: 80px;
+            /* display: flex;
+            justify-content: space-around; */
+        }
+        .y1{
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            margin-top: 2%;
+            filter: drop-shadow(0 0 5px gray);
+            height: 300px;
+            padding-top: 20px;
+            width: 1100px;
+            margin-left: 80px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .a2, .a3, .a4{
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            margin-top: 1.2%;
+            filter: drop-shadow(0 0 5px gray);
+            height: 125px;
+            padding-top: 20px;
+            width: 1100px;
+            margin-left: 80px;
+            display: flex;
+            justify-content: space-evenly;
+            /* flex-wrap: wrap; */
+        
+        }
+        .g1{
+            background-color: lightgray;
+            color: black;
+            /* text-align: center; */
+            margin-top: 1.2%;
+            filter: drop-shadow(0 0 5px gray);
+            height: 400px;
+            padding-top: 20px;
+            width: 1100px;
+            margin-left: 80px;
+            /* display: flex;
+            justify-content: space-evenly;   */
+            /* text-align: left; */
+        }
+        .d1 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .d2 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .d3 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30x;
+            font-size: 3rem;
+         }
+         .d4 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .d1, .d2, .d3, .d4, .e1, .e2, .e3, .e4, .e5, .f1, .f2, .f3, .f4{
+            background-color: black;
+            width: 120px;
+            height: 100px;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 5px;
+            border: 2px solid gray; 
+            text-align: center;   
+            /* margin-top: 2px;    */
+            color: white;
+         }
+         .e3 h5{
+            padding-top: 15px;
+         }
+         .f3 h5{
+            padding-top: 15px;
+         }
+         .e1 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .e2 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .e3 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30x;
+            font-size: 3rem;
+         }
+         .e4 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .e5 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .f1 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .f2 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+         .f3 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30x;
+            font-size: 3rem;
+         }
+         .f4 i{
+            margin-right: 0.5px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 3rem;
+         }
+       .g2 img{
+        margin-left: 570px;
+        margin-top: -355px;
+        /* margin-bottom: 50px; */
+        padding-top: 10px;
+       }
+       .y1 img{
+        margin-top: 40px;
+       }
+       .y1 img:hover{
+        border-radius: 20px;
+        transform: scale(1.2);
+        transition: all 0.5s ease-in-out;
+        filter: drop-shadow(0 0 15px black);
+        z-index: 1;
+        box-shadow: black;
+       }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <div class="c1"><h1>PORTFOLIO</h1></div>
+          <div class="c2">
+              <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#About">About</a></li>
+                  <li><a href="#Skill">Skills</a></li>
+                  <li><a href="#Portfolio">Portfolio</a></li>
+                  <li><a href="#Contact">Contact</a></li>
+              </ul>
+          </div>
+          <div class="c3">
+              <ul>
+                <li><a href="https://www.instagram.com/alfi.khan.3760436?igsh=MTloc3M4NnE5Mm9wNA=="><i class="fa-brands fa-instagram fa-2xl" style="color: #e01fd0;"></i></a></li>
+                <li><a href="https://wa.me/qr/G3FUH5DJFJN7B1"><i class="fa-brands fa-whatsapp fa-2xl" style="color: #21ca2c;"></i></a></li>
+                  <li><a href="https://www.facebook.com/share/1GWNYcqntP/"><i class="fa-brands fa-facebook fa-2xl" style="color: #235fc7;"></i></a></li>
+                  <li><a href="#"><i class="fa-brands fa-twitter fa-2xl" style="color: #377ffb;"></i></a></li>
+              </ul>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="m1"><h2>Hi, I'M</h2><H1 style="color: gray;">ALFI KHAN </H1></div><br>
+        <div class="m2"><h2>I'M A </h2><h2>FRONTEND DEVELOPER</h2></div>
+        <div class="m3"><a href="resume 2.docx"><button>DOWNLOAD C.V</button></a></div>
+    </main>
+
+    <div class="m4" id="About">
+        <h1>ABOUT ME</h1></div>
+    <div class="a1"><h3>FRONTEND DEVELOPER</h3><br><p>Passionate Frontend Developer with expertise in crafting responsive and user friendly web applications.</p><br><p>Skilled in modern HTML, CSS and javascript. </p><br><p>Strong problem solver with a keen eye for design and attention to details</p><br><p>Enthusiastic about continous learning and adapting to new tools and frameworks</p><br><p>you can also check my projects on github - <a href=" https://github.com/alfi-cmd/alfik-demo.git">https://github.com/alfi-cmd/alfik-demo.git</a></p>
+    </div>
+
+    <!-- <div class="m4"><h1>PORTFOLIO</h1></div>
+    <div class="a1"></div> -->
+
+    <div class="m4" id="Skill"><h1>SKILLS</h1></div>
+    <div class="a2">
+       <div class="d1"><i class="fa-solid fa-file-word fa-2xl" style="color: #f0f2f4;"></i><H5>MS-WORD</H5></div>
+       <div class="d1"><i class="fa-solid fa-file-powerpoint fa-2xl" style="color: #f5f5f5;"></i><h5>POWERPOINT</h5></div>
+       <div class="d1"><i class="fa-solid fa-file-excel fa-2xl" style="color: #f5f5f5;"></i><H5>MS-EXCEL</H5></div>
+       <div class="d1"><i class="fa-solid fa-cannabis fa-2xl" style="color: #f5f5f5;"></i><H5>CANVA</H5></div>
+       <div class="d1"><i class="fa-solid fa-file fa-2xl" style="color: #f4f7fa;"></i><H5>DOCS.</H5></div>
+    </div>
+    <div class="a3">
+        <div class="e1"><i class="fa-brands fa-html5 fa-2xl" style="color: #f4f5f6;"></i><h5>HTML</h5></div>
+        <div class="e2"><i class="fa-brands fa-css fa-2xl" style="color: #f5f7fa;"></i><h5>CSS</h5></div>
+        <div class="e3"><i class="fa-brands fa-js fa-2xl" style="color: #f4f5f6;"></i><h5>JAVA SCRIPT</h5></div>
+        <div class="e4"><i class="fa-brands fa-php fa-2xl" style="color: #fafafa;"></i><h5>PHP</h5></div>
+        <div class="e5"><i class="fa-solid fa-clipboard-question fa-2xl" style="color: #f0f2f4;"></i><h5>JQUERY</h5></div>
+    </div>
+    <div class="a4">
+        <div class="f1"><i class="fa-solid fa-code fa-2xl" style="color: #f7f3f3;"></i><h5>MY SQL</h5></div>
+        <div class="f2"><i class="fa-brands fa-bootstrap fa-2xl" style="color: #f4f5f5;"></i><h5>BOOTSTRAP</h5></div>
+        <div class="f3"><i class="fa-brands fa-wordpress fa-2xl" style="color: #f5f5f5;"></i><h5>WORD PRESS</h5></div>
+        <div class="f4"><i class="fa-brands fa-github fa-2xl" style="color: #f3f4f7;"></i><h5>GITHUB</h5></div>
+    </div>
+
+    <div class="m4" id="Portfolio"><h1>PORTFOLIO</h1></div>
+    <div class="y1">
+        <a href="camera index.html"><img  src="images/p6.avif" alt="" width="200px" height="200px" ></a>
+        <a href="flower index.html"><img src="images/p5.jpg" alt="" width="200px" height="200px"></a>
+        <a href="calculator index.html"> <img src="images/p8.avif" alt="" width="200px" height="200px"></a>
+        <a href="spotify index.html"> <img src="images/p9.png" alt="" width="200px" height="200px"></a>
+         <a href="waether index.html"><img  src="images/p7.jpg" alt="" width="200px" height="200px" ></a>
+     </div>
+    <div class="y1">
+        <a href="tic index.html"><img  src="images/p11.jpg" alt="" width="200px" height="200px" ></a>
+        <a href="flipkart index.html"><img src="images/f logo.png" alt="" width="200px" height="200px"></a>
+        <a href="bulb index.html"> <img src="images/p15.png" alt="" width="200px" height="200px"></a>
+        <a href="traffic index.html"> <img src="images/p13.webp" alt="" width="200px" height="200px"></a>
+         <a href="attendance index.html"><img  src="images/p14.jpg" alt="" width="200px" height="200px" ></a>
+     </div>
+     
+   <footer>
+    <div class="m4" id="Contact"><h1>CONTACT</h1></div>
+    <div class="g1">
+        
+        <p><input type="name" placeholder="YOUR NAME" size="60px"></p><br>
+        <p><input type="email" placeholder="YOUR EMAIL" size="60px"></p><br>
+        <p><input type="name" placeholder="NUMBER" size="60px"></p><br>
+        <p><input type="country" placeholder="COUNTRY" size="60px"></p><br>
+        <p><textarea name="address" id="" placeholder="ADDRESS" size="60px"></textarea><p><button>Send Message</button></p></p>
+        <div class="c3">
+            <ul>
+              <li><i class="fa-brands fa-instagram fa-2xl" style="color: #e01fd0;"></i></li>
+              <li><i class="fa-brands fa-whatsapp fa-2xl" style="color: #21ca2c;"></i></li>
+                <li><i class="fa-brands fa-facebook fa-2xl" style="color: #235fc7;"></i></li>
+                <li><i class="fa-brands fa-twitter fa-2xl" style="color: #377ffb;"></i></li>
+            </ul>
+        </div>
+        <div class="g2"><img src="images/cont1.jpeg" alt="" width="480px" height="400px"></div>
+    </div>
+   </footer>
+</body>
+</html>
