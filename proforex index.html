@@ -462,14 +462,57 @@
    <div id="trade-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.8);">
     <div class="glass-card rounded-2xl p-6 max-w-lg w-full max-h-[90%] overflow-y-auto">
      <div class="flex items-center justify-between mb-4">
-      <h3 id="modal-title" class="text-xl font-bold text-white">Trade Details</h3><button id="close-modal" class="text-gray-400 hover:text-white">
+      <h3 class="text-xl font-bold text-white">Trade Details</h3><button id="close-modal" class="text-gray-400 hover:text-white">
        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
        </svg></button>
      </div>
      <div id="modal-content"></div>
-     <div id="modal-view-actions" class="mt-6 flex gap-3"><button id="edit-trade-btn" class="flex-1 py-3 btn-gold rounded-xl text-navy-900 font-medium">Edit Trade</button> <button id="delete-trade-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete Trade</button> <button id="close-modal-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Close</button>
+     <div id="modal-buttons" class="mt-6 flex gap-3"><button id="edit-trade-btn" class="flex-1 py-3 btn-gold rounded-xl text-navy-900 font-medium">Edit Trade</button> <button id="delete-trade-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete</button> <button id="close-modal-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Close</button>
      </div>
-     <div id="modal-edit-actions" class="hidden mt-6 flex gap-3"><button id="save-edit-btn" class="flex-1 py-3 btn-gold rounded-xl text-navy-900 font-medium">Save Changes</button> <button id="cancel-edit-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Cancel</button>
+     <div id="edit-form" class="hidden mt-6 space-y-4">
+      <h4 class="text-lg font-semibold text-white">Edit Trade</h4>
+      <form id="edit-trade-form" class="space-y-4">
+       <div class="grid md:grid-cols-3 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Date</label> <input type="date" id="edit-date" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Pair</label> <select id="edit-pair" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="XAUUSD">XAU/USD</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option> </select>
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Type</label> <select id="edit-type" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="BUY">Buy</option><option value="SELL">Sell</option> </select>
+        </div>
+       </div>
+       <div class="grid md:grid-cols-4 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Entry</label> <input type="number" step="0.00001" id="edit-entry" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">SL</label> <input type="number" step="0.00001" id="edit-sl" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">TP</label> <input type="number" step="0.00001" id="edit-tp" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Lots</label> <input type="number" step="0.01" id="edit-lots" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+       </div>
+       <div class="grid md:grid-cols-3 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Risk%</label> <input type="number" step="0.1" id="edit-risk" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Result</label> <select id="edit-result" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="WIN">Win</option><option value="LOSS">Loss</option><option value="BREAKEVEN">Break-even</option> </select>
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">P/L ($)</label> <input type="number" step="0.01" id="edit-pnl" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+       </div>
+       <div class="grid md:grid-cols-2 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Emotion</label> <select id="edit-emotion" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="">None</option><option value="CONFIDENT">Confident</option><option value="CALM">Calm</option><option value="ANXIOUS">Anxious</option><option value="GREEDY">Greedy</option><option value="FEARFUL">Fearful</option> </select>
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Setup</label> <input type="text" id="edit-setup" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+        </div>
+       </div>
+       <div><label class="block text-sm text-gray-400 mb-2">Mistake</label> <input type="text" id="edit-mistake" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+       </div>
+       <div><label class="block text-sm text-gray-400 mb-2">Lesson</label> <input type="text" id="edit-lesson" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+       </div>
+       <div><label class="block text-sm text-gray-400 mb-2">Notes</label> <textarea id="edit-notes" rows="2" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white resize-none"></textarea>
+       </div>
+       <div class="flex gap-3"><button type="submit" id="save-edit-btn" class="flex-1 py-3 btn-gold rounded-lg text-navy-900 font-medium">Save Changes</button> <button type="button" id="cancel-edit-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-lg text-white font-medium">Cancel</button>
+       </div>
+      </form>
      </div>
     </div>
    </div><!-- Toast Notification -->
@@ -492,7 +535,6 @@
     let charts = {};
     let selectedTrade = null;
     let isLoading = false;
-    let isEditMode = false;
     
     // Default Config
     const defaultConfig = {
@@ -1124,7 +1166,6 @@
       selectedTrade = trades.find(t => t.__backendId === tradeId);
       if (!selectedTrade) return;
       
-      isEditMode = false;
       const modal = document.getElementById('trade-modal');
       const content = document.getElementById('modal-content');
       
@@ -1191,74 +1232,7 @@
         </div>
       `;
       
-      document.getElementById('modal-title').textContent = 'Trade Details';
-      document.getElementById('modal-view-actions').classList.remove('hidden');
-      document.getElementById('modal-edit-actions').classList.add('hidden');
       modal.classList.remove('hidden');
-    }
-    
-    function enterEditMode() {
-      if (!selectedTrade) return;
-      
-      isEditMode = true;
-      const content = document.getElementById('modal-content');
-      
-      content.innerHTML = `
-        <form id="edit-trade-form" class="space-y-4">
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Date</label>
-              <input type="date" id="edit-date" value="${selectedTrade.date}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm">
-            </div>
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Pair</label>
-              <input type="text" id="edit-pair" value="${selectedTrade.pair}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm">
-            </div>
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Entry Price</label>
-              <input type="number" step="0.00001" id="edit-entry" value="${selectedTrade.entryPrice}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm font-mono">
-            </div>
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Stop Loss</label>
-              <input type="number" step="0.00001" id="edit-sl" value="${selectedTrade.stopLoss}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm font-mono">
-            </div>
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Take Profit</label>
-              <input type="number" step="0.00001" id="edit-tp" value="${selectedTrade.takeProfit}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm font-mono">
-            </div>
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Lot Size</label>
-              <input type="number" step="0.01" id="edit-lots" value="${selectedTrade.lotSize}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm font-mono">
-            </div>
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">Risk %</label>
-              <input type="number" step="0.1" id="edit-risk" value="${selectedTrade.riskPercent}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm font-mono">
-            </div>
-            <div>
-              <label class="block text-xs text-gray-500 mb-2">P/L ($)</label>
-              <input type="number" step="0.01" id="edit-pnl" value="${selectedTrade.profitLoss}" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm font-mono">
-            </div>
-          </div>
-          
-          <div>
-            <label class="block text-xs text-gray-500 mb-2">Notes</label>
-            <textarea id="edit-notes" rows="2" class="w-full px-3 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white text-sm resize-none">${selectedTrade.notes || ''}</textarea>
-          </div>
-        </form>
-      `;
-      
-      document.getElementById('modal-title').textContent = 'Edit Trade';
-      document.getElementById('modal-view-actions').classList.add('hidden');
-      document.getElementById('modal-edit-actions').classList.remove('hidden');
     }
     
     // Calculate RR
@@ -1479,23 +1453,47 @@
       // Modal
       document.getElementById('close-modal').addEventListener('click', () => {
         document.getElementById('trade-modal').classList.add('hidden');
+        document.getElementById('edit-form').classList.add('hidden');
+        document.getElementById('modal-buttons').classList.remove('hidden');
         selectedTrade = null;
-        isEditMode = false;
       });
       
       document.getElementById('close-modal-btn').addEventListener('click', () => {
         document.getElementById('trade-modal').classList.add('hidden');
+        document.getElementById('edit-form').classList.add('hidden');
+        document.getElementById('modal-buttons').classList.remove('hidden');
         selectedTrade = null;
-        isEditMode = false;
       });
       
-      document.getElementById('edit-trade-btn').addEventListener('click', enterEditMode);
+      document.getElementById('edit-trade-btn').addEventListener('click', () => {
+        if (!selectedTrade) return;
+        document.getElementById('modal-buttons').classList.add('hidden');
+        document.getElementById('edit-form').classList.remove('hidden');
+        
+        document.getElementById('edit-date').value = selectedTrade.date;
+        document.getElementById('edit-pair').value = selectedTrade.pair;
+        document.getElementById('edit-type').value = selectedTrade.type;
+        document.getElementById('edit-entry').value = selectedTrade.entryPrice;
+        document.getElementById('edit-sl').value = selectedTrade.stopLoss;
+        document.getElementById('edit-tp').value = selectedTrade.takeProfit;
+        document.getElementById('edit-lots').value = selectedTrade.lotSize;
+        document.getElementById('edit-risk').value = selectedTrade.riskPercent;
+        document.getElementById('edit-result').value = selectedTrade.result;
+        document.getElementById('edit-pnl').value = selectedTrade.profitLoss;
+        document.getElementById('edit-emotion').value = selectedTrade.emotion || '';
+        document.getElementById('edit-setup').value = selectedTrade.setup || '';
+        document.getElementById('edit-mistake').value = selectedTrade.mistake || '';
+        document.getElementById('edit-lesson').value = selectedTrade.lesson || '';
+        document.getElementById('edit-notes').value = selectedTrade.notes || '';
+      });
       
       document.getElementById('cancel-edit-btn').addEventListener('click', () => {
-        showTradeModal(selectedTrade.__backendId);
+        document.getElementById('edit-form').classList.add('hidden');
+        document.getElementById('modal-buttons').classList.remove('hidden');
       });
       
-      document.getElementById('save-edit-btn').addEventListener('click', async () => {
+      document.getElementById('edit-trade-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
         if (!selectedTrade || isLoading) return;
         
         isLoading = true;
@@ -1507,12 +1505,18 @@
           ...selectedTrade,
           date: document.getElementById('edit-date').value,
           pair: document.getElementById('edit-pair').value,
+          type: document.getElementById('edit-type').value,
           entryPrice: parseFloat(document.getElementById('edit-entry').value),
           stopLoss: parseFloat(document.getElementById('edit-sl').value),
           takeProfit: parseFloat(document.getElementById('edit-tp').value),
           lotSize: parseFloat(document.getElementById('edit-lots').value),
           riskPercent: parseFloat(document.getElementById('edit-risk').value),
+          result: document.getElementById('edit-result').value,
           profitLoss: parseFloat(document.getElementById('edit-pnl').value),
+          emotion: document.getElementById('edit-emotion').value,
+          setup: document.getElementById('edit-setup').value,
+          mistake: document.getElementById('edit-mistake').value,
+          lesson: document.getElementById('edit-lesson').value,
           notes: document.getElementById('edit-notes').value
         };
         
@@ -1521,9 +1525,11 @@
           if (result.isOk) {
             showToast('Trade updated successfully!');
             document.getElementById('trade-modal').classList.add('hidden');
-            isEditMode = false;
+            document.getElementById('edit-form').classList.add('hidden');
+            document.getElementById('modal-buttons').classList.remove('hidden');
           } else {
             showToast('Failed to update trade', 'error');
+            console.error('Update error:', result.error);
           }
         }
         
@@ -1576,5 +1582,5 @@
       applyConfig();
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c50dd85bbb2d8',t:'MTc3MjI0Mzg5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c4651c4b6b2d8',t:'MTc3MjI0MzQ2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
