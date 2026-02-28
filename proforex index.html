@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -140,6 +139,7 @@
     }
   </style>
   <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-navy-900 text-gray-100 font-sans overflow-auto">
   <div id="app" class="min-h-full w-full"><!-- Auth Screen -->
@@ -541,56 +541,14 @@
     // Data Handler
     const dataHandler = {
       onDataChanged(data) {
-        if (!currentUser) return;
-        trades = data.filter(t => t.userId === currentUser.id);
-        updateDashboard();
-        updateCharts();
-        updateRecentTrades();
-        updateTradeHistory();
-        updateAnalytics();
+        // No longer using SDK
       }
     };
     
-    // Trade Storage (localStorage + Data SDK)
-    function getTrades() {
-      const trades = localStorage.getItem('proforex_trades');
-      return trades ? JSON.parse(trades) : [];
-    }
+    // Initialize Data SDK - REMOVED
+    let sdkReady = true; // Set to true for localStorage-only mode
     
-    function saveTrades(tradesData) {
-      localStorage.setItem('proforex_trades', JSON.stringify(tradesData));
-    }
-    
-    // Initialize Data SDK
-    let sdkReady = false;
-    async function initDataSdk() {
-      if (window.dataSdk) {
-        try {
-          const result = await window.dataSdk.init(dataHandler);
-          if (result.isOk) {
-            sdkReady = true;
-            // Load trades from localStorage into SDK
-            const localTrades = getTrades();
-            for (const trade of localTrades) {
-              if (!trade.__backendId) {
-                const createResult = await window.dataSdk.create(trade);
-                if (createResult.isOk) {
-                  trade.__backendId = 'trade_' + Date.now();
-                }
-              }
-            }
-          } else {
-            showToast('Note: Working in offline mode', 'info');
-          }
-        } catch (err) {
-          console.error('SDK init error:', err);
-        }
-      }
-    }
-    
-    initDataSdk();
-    
-    // User Management (Demo - uses localStorage for user auth simulation)
+    // User Management (Demo - uses localStorage)
     function getUsers() {
       const users = localStorage.getItem('proforex_users');
       return users ? JSON.parse(users) : [];
@@ -600,17 +558,16 @@
       localStorage.setItem('proforex_users', JSON.stringify(users));
     }
     
-    function getCurrentSession() {
-      const session = localStorage.getItem('proforex_session');
-      return session ? JSON.parse(session) : null;
+    function getTrades(userId) {
+      const allTrades = localStorage.getItem('proforex_trades') || '{}';
+      const tradesObj = JSON.parse(allTrades);
+      return tradesObj[userId] || [];
     }
     
-    function saveSession(user) {
-      localStorage.setItem('proforex_session', JSON.stringify(user));
-    }
-    
-    function clearSession() {
-      localStorage.removeItem('proforex_session');
+    function saveTrades(userId, userTrades) {
+      const allTrades = JSON.parse(localStorage.getItem('proforex_trades') || '{}');
+      allTrades[userId] = userTrades;
+      localStorage.setItem('proforex_trades', JSON.stringify(allTrades));
     }
     
     // Auth Functions
@@ -629,7 +586,6 @@
         };
         users.push(newUser);
         saveUsers(users);
-        saveSession(newUser);
         return newUser;
       }
       
@@ -638,7 +594,6 @@
         return null;
       }
       
-      saveSession(user);
       return user;
     }
     
@@ -659,12 +614,10 @@
       
       users.push(newUser);
       saveUsers(users);
-      saveSession(newUser);
       return newUser;
     }
     
     function logout() {
-      clearSession();
       currentUser = null;
       trades = [];
       document.getElementById('auth-screen').classList.remove('hidden');
@@ -704,6 +657,7 @@
     
     function showDashboard(user) {
       currentUser = user;
+      trades = getTrades(user.id);
       document.getElementById('auth-screen').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
       document.getElementById('user-initial').textContent = user.name.charAt(0).toUpperCase();
@@ -1259,18 +1213,11 @@
     
     // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // Check existing session
-      const session = getCurrentSession();
+      // Check existing session - removed as localStorage saves trades per user
+      const session = localStorage.getItem('proforex_session');
       if (session) {
-        showDashboard(session);
-        // Load trades from localStorage
-        const allTrades = getTrades();
-        trades = allTrades.filter(t => t.userId === session.id);
-        updateDashboard();
-        updateCharts();
-        updateRecentTrades();
-        updateTradeHistory();
-        updateAnalytics();
+        const user = JSON.parse(session);
+        showDashboard(user);
       }
       
       // Set today's date
@@ -1304,6 +1251,7 @@
         const password = document.getElementById('login-password').value;
         const user = login(email, password);
         if (user) {
+          localStorage.setItem('proforex_session', JSON.stringify(user));
           showToast('Welcome back!');
           showDashboard(user);
         }
@@ -1317,6 +1265,7 @@
         const password = document.getElementById('signup-password').value;
         const user = signup(name, email, password);
         if (user) {
+          localStorage.setItem('proforex_session', JSON.stringify(user));
           showToast('Account created!');
           showDashboard(user);
         }
@@ -1379,6 +1328,7 @@
         btn.disabled = true;
         
         const trade = {
+          __backendId: 'trade_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
           userId: currentUser.id,
           date: document.getElementById('trade-date').value,
           pair: document.getElementById('trade-pair').value,
@@ -1399,33 +1349,20 @@
         };
         
         try {
-          // Save to localStorage first
-          const allTrades = getTrades();
-          trade.__backendId = 'trade_' + Date.now();
-          allTrades.push(trade);
-          saveTrades(allTrades);
-          
-          // Also save to Data SDK if available
-          if (window.dataSdk && sdkReady) {
-            const result = await window.dataSdk.create(trade);
-            if (!result.isOk) {
-              console.error('SDK create error:', result.error);
-            }
-          }
-          
           trades.push(trade);
-          updateDashboard();
-          updateCharts();
-          updateRecentTrades();
-          
+          saveTrades(currentUser.id, trades);
           showToast('Trade saved successfully!');
           document.getElementById('trade-form').reset();
           document.getElementById('trade-date').valueAsDate = new Date();
           document.getElementById('calculated-rr').textContent = '-';
+          updateDashboard();
+          updateCharts();
+          updateRecentTrades();
           switchView('overview');
         } catch (err) {
           showToast('Error saving trade', 'error');
           console.error('Submit error:', err);
+          trades.pop();
         }
         
         isLoading = false;
@@ -1468,30 +1405,22 @@
         btn.textContent = 'Deleting...';
         btn.disabled = true;
         
-        // Delete from localStorage
-        let allTrades = getTrades();
-        allTrades = allTrades.filter(t => t.__backendId !== selectedTrade.__backendId);
-        saveTrades(allTrades);
-        
-        // Delete from SDK if available
-        if (window.dataSdk && sdkReady) {
-          const result = await window.dataSdk.delete(selectedTrade);
-          if (!result.isOk) {
-            console.error('SDK delete error:', result.error);
-          }
+        try {
+          trades = trades.filter(t => t.__backendId !== selectedTrade.__backendId);
+          saveTrades(currentUser.id, trades);
+          showToast('Trade deleted');
+          updateDashboard();
+          updateCharts();
+          updateRecentTrades();
+          updateTradeHistory();
+        } catch (err) {
+          showToast('Failed to delete trade', 'error');
         }
-        
-        // Update trades list
-        trades = trades.filter(t => t.__backendId !== selectedTrade.__backendId);
-        updateDashboard();
-        updateCharts();
-        updateRecentTrades();
         
         isLoading = false;
         btn.textContent = 'Delete';
         btn.disabled = false;
         document.getElementById('delete-confirm-modal').classList.add('hidden');
-        showToast('Trade deleted');
         selectedTrade = null;
       });
       
@@ -1506,5 +1435,5 @@
       applyConfig();
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c21109267b2d8',t:'MTc3MjI0MTkzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c2b2f266db2d8',t:'MTc3MjI0MjM1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
