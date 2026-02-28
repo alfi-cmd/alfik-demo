@@ -551,23 +551,35 @@
       }
     };
     
-    // Initialize Data SDK
+    // Initialize Data SDK with proper waiting
     let sdkReady = false;
+    
+    async function waitForSdk() {
+      let attempts = 0;
+      while (!window.dataSdk && attempts < 30) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+      }
+      return window.dataSdk;
+    }
+    
     async function initDataSdk() {
-      // Wait a bit for SDK to be available globally
-      for (let i = 0; i < 20; i++) {
-        if (window.dataSdk) {
-          try {
-            const result = await window.dataSdk.init(dataHandler);
-            if (result.isOk) {
-              sdkReady = true;
-              return;
-            }
-          } catch (err) {
-            console.error('SDK init error:', err);
-          }
+      try {
+        const sdk = await waitForSdk();
+        if (!sdk) {
+          console.error('Data SDK failed to load');
+          return;
         }
-        await new Promise(r => setTimeout(r, 100));
+        
+        const result = await sdk.init(dataHandler);
+        if (result && result.isOk) {
+          sdkReady = true;
+          console.log('Data SDK initialized successfully');
+        } else {
+          console.error('SDK init failed:', result?.error);
+        }
+      } catch (err) {
+        console.error('SDK init error:', err);
       }
     }
     
@@ -1345,7 +1357,13 @@
         if (isLoading) return;
         
         // Wait for SDK to be ready
-        if (!window.dataSdk || !sdkReady) {
+        let attempts = 0;
+        while (!sdkReady && attempts < 20) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          attempts++;
+        }
+        
+        if (!sdkReady || !window.dataSdk) {
           showToast('Data storage not ready. Please try again.', 'error');
           return;
         }
@@ -1464,5 +1482,5 @@
       applyConfig();
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c09a7f7d0b2d8',t:'MTc3MjI0MDk3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c185442c0b2d8',t:'MTc3MjI0MTU4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
