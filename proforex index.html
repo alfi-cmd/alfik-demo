@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
@@ -139,7 +140,6 @@
     }
   </style>
   <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-navy-900 text-gray-100 font-sans overflow-auto">
   <div id="app" class="min-h-full w-full"><!-- Auth Screen -->
@@ -467,7 +467,52 @@
        </svg></button>
      </div>
      <div id="modal-content"></div>
-     <div class="mt-6 flex gap-3"><button id="delete-trade-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete Trade</button> <button id="close-modal-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Close</button>
+     <div id="modal-buttons" class="mt-6 flex gap-3"><button id="edit-trade-btn" class="flex-1 py-3 btn-gold rounded-xl text-navy-900 font-medium">Edit Trade</button> <button id="delete-trade-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete</button> <button id="close-modal-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Close</button>
+     </div>
+     <div id="edit-form" class="hidden mt-6 space-y-4">
+      <h4 class="text-lg font-semibold text-white">Edit Trade</h4>
+      <form id="edit-trade-form" class="space-y-4">
+       <div class="grid md:grid-cols-3 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Date</label> <input type="date" id="edit-date" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Pair</label> <select id="edit-pair" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="XAUUSD">XAU/USD</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option> </select>
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Type</label> <select id="edit-type" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="BUY">Buy</option><option value="SELL">Sell</option> </select>
+        </div>
+       </div>
+       <div class="grid md:grid-cols-4 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Entry</label> <input type="number" step="0.00001" id="edit-entry" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">SL</label> <input type="number" step="0.00001" id="edit-sl" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">TP</label> <input type="number" step="0.00001" id="edit-tp" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Lots</label> <input type="number" step="0.01" id="edit-lots" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+       </div>
+       <div class="grid md:grid-cols-3 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Risk%</label> <input type="number" step="0.1" id="edit-risk" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Result</label> <select id="edit-result" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="WIN">Win</option><option value="LOSS">Loss</option><option value="BREAKEVEN">Break-even</option> </select>
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">P/L ($)</label> <input type="number" step="0.01" id="edit-pnl" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white font-mono">
+        </div>
+       </div>
+       <div class="grid md:grid-cols-2 gap-4">
+        <div><label class="block text-sm text-gray-400 mb-2">Emotion</label> <select id="edit-emotion" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="">None</option><option value="CONFIDENT">Confident</option><option value="CALM">Calm</option><option value="ANXIOUS">Anxious</option><option value="GREEDY">Greedy</option><option value="FEARFUL">Fearful</option> </select>
+        </div>
+        <div><label class="block text-sm text-gray-400 mb-2">Setup</label> <input type="text" id="edit-setup" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+        </div>
+       </div>
+       <div><label class="block text-sm text-gray-400 mb-2">Mistake</label> <input type="text" id="edit-mistake" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+       </div>
+       <div><label class="block text-sm text-gray-400 mb-2">Lesson</label> <input type="text" id="edit-lesson" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
+       </div>
+       <div><label class="block text-sm text-gray-400 mb-2">Notes</label> <textarea id="edit-notes" rows="2" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white resize-none"></textarea>
+       </div>
+       <div class="flex gap-3"><button type="submit" id="save-edit-btn" class="flex-1 py-3 btn-gold rounded-lg text-navy-900 font-medium">Save Changes</button> <button type="button" id="cancel-edit-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-lg text-white font-medium">Cancel</button>
+       </div>
+      </form>
      </div>
     </div>
    </div><!-- Toast Notification -->
@@ -541,14 +586,36 @@
     // Data Handler
     const dataHandler = {
       onDataChanged(data) {
-        // No longer using SDK
+        if (!currentUser) return;
+        trades = data.filter(t => t.userId === currentUser.id);
+        updateDashboard();
+        updateCharts();
+        updateRecentTrades();
+        updateTradeHistory();
+        updateAnalytics();
       }
     };
     
-    // Initialize Data SDK - REMOVED
-    let sdkReady = true; // Set to true for localStorage-only mode
+    // Initialize Data SDK
+    let sdkReady = false;
+    async function initDataSdk() {
+      if (window.dataSdk) {
+        try {
+          const result = await window.dataSdk.init(dataHandler);
+          if (result.isOk) {
+            sdkReady = true;
+          } else {
+            showToast('Failed to initialize data storage', 'error');
+          }
+        } catch (err) {
+          console.error('SDK init error:', err);
+        }
+      }
+    }
     
-    // User Management (Demo - uses localStorage)
+    initDataSdk();
+    
+    // User Management (Demo - uses localStorage for user auth simulation)
     function getUsers() {
       const users = localStorage.getItem('proforex_users');
       return users ? JSON.parse(users) : [];
@@ -558,16 +625,17 @@
       localStorage.setItem('proforex_users', JSON.stringify(users));
     }
     
-    function getTrades(userId) {
-      const allTrades = localStorage.getItem('proforex_trades') || '{}';
-      const tradesObj = JSON.parse(allTrades);
-      return tradesObj[userId] || [];
+    function getCurrentSession() {
+      const session = localStorage.getItem('proforex_session');
+      return session ? JSON.parse(session) : null;
     }
     
-    function saveTrades(userId, userTrades) {
-      const allTrades = JSON.parse(localStorage.getItem('proforex_trades') || '{}');
-      allTrades[userId] = userTrades;
-      localStorage.setItem('proforex_trades', JSON.stringify(allTrades));
+    function saveSession(user) {
+      localStorage.setItem('proforex_session', JSON.stringify(user));
+    }
+    
+    function clearSession() {
+      localStorage.removeItem('proforex_session');
     }
     
     // Auth Functions
@@ -586,6 +654,7 @@
         };
         users.push(newUser);
         saveUsers(users);
+        saveSession(newUser);
         return newUser;
       }
       
@@ -594,6 +663,7 @@
         return null;
       }
       
+      saveSession(user);
       return user;
     }
     
@@ -614,10 +684,12 @@
       
       users.push(newUser);
       saveUsers(users);
+      saveSession(newUser);
       return newUser;
     }
     
     function logout() {
+      clearSession();
       currentUser = null;
       trades = [];
       document.getElementById('auth-screen').classList.remove('hidden');
@@ -657,7 +729,6 @@
     
     function showDashboard(user) {
       currentUser = user;
-      trades = getTrades(user.id);
       document.getElementById('auth-screen').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
       document.getElementById('user-initial').textContent = user.name.charAt(0).toUpperCase();
@@ -1213,11 +1284,10 @@
     
     // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // Check existing session - removed as localStorage saves trades per user
-      const session = localStorage.getItem('proforex_session');
+      // Check existing session
+      const session = getCurrentSession();
       if (session) {
-        const user = JSON.parse(session);
-        showDashboard(user);
+        showDashboard(session);
       }
       
       // Set today's date
@@ -1251,7 +1321,6 @@
         const password = document.getElementById('login-password').value;
         const user = login(email, password);
         if (user) {
-          localStorage.setItem('proforex_session', JSON.stringify(user));
           showToast('Welcome back!');
           showDashboard(user);
         }
@@ -1265,7 +1334,6 @@
         const password = document.getElementById('signup-password').value;
         const user = signup(name, email, password);
         if (user) {
-          localStorage.setItem('proforex_session', JSON.stringify(user));
           showToast('Account created!');
           showDashboard(user);
         }
@@ -1317,6 +1385,12 @@
         e.preventDefault();
         if (isLoading) return;
         
+        // Wait for SDK to be ready
+        if (!window.dataSdk || !sdkReady) {
+          showToast('Data storage not ready. Please try again.', 'error');
+          return;
+        }
+        
         if (trades.length >= 999) {
           showToast('Maximum trade limit reached (999)', 'error');
           return;
@@ -1328,7 +1402,6 @@
         btn.disabled = true;
         
         const trade = {
-          __backendId: 'trade_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
           userId: currentUser.id,
           date: document.getElementById('trade-date').value,
           pair: document.getElementById('trade-pair').value,
@@ -1349,20 +1422,20 @@
         };
         
         try {
-          trades.push(trade);
-          saveTrades(currentUser.id, trades);
-          showToast('Trade saved successfully!');
-          document.getElementById('trade-form').reset();
-          document.getElementById('trade-date').valueAsDate = new Date();
-          document.getElementById('calculated-rr').textContent = '-';
-          updateDashboard();
-          updateCharts();
-          updateRecentTrades();
-          switchView('overview');
+          const result = await window.dataSdk.create(trade);
+          if (result.isOk) {
+            showToast('Trade saved successfully!');
+            document.getElementById('trade-form').reset();
+            document.getElementById('trade-date').valueAsDate = new Date();
+            document.getElementById('calculated-rr').textContent = '-';
+            switchView('overview');
+          } else {
+            showToast('Failed to save trade', 'error');
+            console.error('Create error:', result.error);
+          }
         } catch (err) {
           showToast('Error saving trade', 'error');
           console.error('Submit error:', err);
-          trades.pop();
         }
         
         isLoading = false;
@@ -1380,12 +1453,89 @@
       // Modal
       document.getElementById('close-modal').addEventListener('click', () => {
         document.getElementById('trade-modal').classList.add('hidden');
+        document.getElementById('edit-form').classList.add('hidden');
+        document.getElementById('modal-buttons').classList.remove('hidden');
         selectedTrade = null;
       });
       
       document.getElementById('close-modal-btn').addEventListener('click', () => {
         document.getElementById('trade-modal').classList.add('hidden');
+        document.getElementById('edit-form').classList.add('hidden');
+        document.getElementById('modal-buttons').classList.remove('hidden');
         selectedTrade = null;
+      });
+      
+      document.getElementById('edit-trade-btn').addEventListener('click', () => {
+        if (!selectedTrade) return;
+        document.getElementById('modal-buttons').classList.add('hidden');
+        document.getElementById('edit-form').classList.remove('hidden');
+        
+        document.getElementById('edit-date').value = selectedTrade.date;
+        document.getElementById('edit-pair').value = selectedTrade.pair;
+        document.getElementById('edit-type').value = selectedTrade.type;
+        document.getElementById('edit-entry').value = selectedTrade.entryPrice;
+        document.getElementById('edit-sl').value = selectedTrade.stopLoss;
+        document.getElementById('edit-tp').value = selectedTrade.takeProfit;
+        document.getElementById('edit-lots').value = selectedTrade.lotSize;
+        document.getElementById('edit-risk').value = selectedTrade.riskPercent;
+        document.getElementById('edit-result').value = selectedTrade.result;
+        document.getElementById('edit-pnl').value = selectedTrade.profitLoss;
+        document.getElementById('edit-emotion').value = selectedTrade.emotion || '';
+        document.getElementById('edit-setup').value = selectedTrade.setup || '';
+        document.getElementById('edit-mistake').value = selectedTrade.mistake || '';
+        document.getElementById('edit-lesson').value = selectedTrade.lesson || '';
+        document.getElementById('edit-notes').value = selectedTrade.notes || '';
+      });
+      
+      document.getElementById('cancel-edit-btn').addEventListener('click', () => {
+        document.getElementById('edit-form').classList.add('hidden');
+        document.getElementById('modal-buttons').classList.remove('hidden');
+      });
+      
+      document.getElementById('edit-trade-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!selectedTrade || isLoading) return;
+        
+        isLoading = true;
+        const btn = document.getElementById('save-edit-btn');
+        btn.textContent = 'Saving...';
+        btn.disabled = true;
+        
+        const updatedTrade = {
+          ...selectedTrade,
+          date: document.getElementById('edit-date').value,
+          pair: document.getElementById('edit-pair').value,
+          type: document.getElementById('edit-type').value,
+          entryPrice: parseFloat(document.getElementById('edit-entry').value),
+          stopLoss: parseFloat(document.getElementById('edit-sl').value),
+          takeProfit: parseFloat(document.getElementById('edit-tp').value),
+          lotSize: parseFloat(document.getElementById('edit-lots').value),
+          riskPercent: parseFloat(document.getElementById('edit-risk').value),
+          result: document.getElementById('edit-result').value,
+          profitLoss: parseFloat(document.getElementById('edit-pnl').value),
+          emotion: document.getElementById('edit-emotion').value,
+          setup: document.getElementById('edit-setup').value,
+          mistake: document.getElementById('edit-mistake').value,
+          lesson: document.getElementById('edit-lesson').value,
+          notes: document.getElementById('edit-notes').value
+        };
+        
+        if (window.dataSdk) {
+          const result = await window.dataSdk.update(updatedTrade);
+          if (result.isOk) {
+            showToast('Trade updated successfully!');
+            document.getElementById('trade-modal').classList.add('hidden');
+            document.getElementById('edit-form').classList.add('hidden');
+            document.getElementById('modal-buttons').classList.remove('hidden');
+          } else {
+            showToast('Failed to update trade', 'error');
+            console.error('Update error:', result.error);
+          }
+        }
+        
+        isLoading = false;
+        btn.textContent = 'Save Changes';
+        btn.disabled = false;
       });
       
       document.getElementById('delete-trade-btn').addEventListener('click', () => {
@@ -1405,16 +1555,13 @@
         btn.textContent = 'Deleting...';
         btn.disabled = true;
         
-        try {
-          trades = trades.filter(t => t.__backendId !== selectedTrade.__backendId);
-          saveTrades(currentUser.id, trades);
-          showToast('Trade deleted');
-          updateDashboard();
-          updateCharts();
-          updateRecentTrades();
-          updateTradeHistory();
-        } catch (err) {
-          showToast('Failed to delete trade', 'error');
+        if (window.dataSdk) {
+          const result = await window.dataSdk.delete(selectedTrade);
+          if (result.isOk) {
+            showToast('Trade deleted');
+          } else {
+            showToast('Failed to delete trade', 'error');
+          }
         }
         
         isLoading = false;
@@ -1435,5 +1582,5 @@
       applyConfig();
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c2b2f266db2d8',t:'MTc3MjI0MjM1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c4651c4b6b2d8',t:'MTc3MjI0MzQ2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
