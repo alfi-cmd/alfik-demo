@@ -142,38 +142,48 @@
   <style>body { box-sizing: border-box; }</style>
  </head>
  <body class="h-full bg-navy-900 text-gray-100 font-sans overflow-auto">
-  <div id="app" class="min-h-full w-full"><!-- Auth Screen -->
+  <div id="app" class="min-h-full w-full">
+   <!-- Auth Screen -->
    <div id="auth-screen" class="min-h-full w-full flex items-center justify-center p-4" style="background: radial-gradient(ellipse at top, #151d35 0%, #0a0e1a 100%);">
-    <div class="w-full max-w-md"><!-- Logo -->
+    <div class="w-full max-w-md">
+     <!-- Logo -->
      <div class="text-center mb-8 animate-fade-in">
       <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500 to-gold-400 mb-4 gold-glow">
-       <svg class="w-8 h-8 text-navy-900" fill="currentColor" viewbox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
+       <svg class="w-8 h-8 text-navy-900" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
        </svg>
       </div>
       <h1 id="auth-title" class="text-3xl font-bold text-white mb-2">ProForex Journal</h1>
       <p id="auth-tagline" class="text-gray-400">Professional Trading Journal</p>
      </div><!-- Auth Card -->
-     <div class="glass-card rounded-2xl p-8 animate-slide-up"><!-- Login Form -->
+     <div class="glass-card rounded-2xl p-8 animate-slide-up">
+      <!-- Login Form -->
       <div id="login-form">
        <h2 class="text-xl font-semibold text-white mb-6">Welcome Back</h2>
        <form id="login-submit" class="space-y-4">
-        <div><label class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="login-email" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="trader@example.com">
+        <div>
+         <label class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="login-email" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="trader@example.com">
         </div>
-        <div><label class="block text-sm text-gray-400 mb-2">Password</label> <input type="password" id="login-password" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="••••••••">
+        <div>
+         <label class="block text-sm text-gray-400 mb-2">Password</label> <input type="password" id="login-password" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="••••••••">
         </div><button type="submit" class="w-full py-3 btn-gold rounded-xl text-navy-900 font-semibold"> Sign In </button>
        </form>
-       <div class="mt-6 text-center space-y-2"><button id="show-forgot" class="text-gold-500 hover:text-gold-400 text-sm">Forgot Password?</button>
+       <div class="mt-6 text-center space-y-2">
+        <button id="show-forgot" class="text-gold-500 hover:text-gold-400 text-sm">Forgot Password?</button>
         <p class="text-gray-500 text-sm">Don't have an account? <button id="show-signup" class="text-gold-500 hover:text-gold-400">Sign Up</button></p>
        </div>
       </div><!-- Signup Form -->
       <div id="signup-form" class="hidden">
        <h2 class="text-xl font-semibold text-white mb-6">Create Account</h2>
        <form id="signup-submit" class="space-y-4">
-        <div><label class="block text-sm text-gray-400 mb-2">Full Name</label> <input type="text" id="signup-name" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="John Trader">
+        <div>
+         <label class="block text-sm text-gray-400 mb-2">Full Name</label> <input type="text" id="signup-name" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="John Trader">
         </div>
-        <div><label class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="signup-email" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="trader@example.com">
+        <div>
+         <label class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="signup-email" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="trader@example.com">
         </div>
-        <div><label class="block text-sm text-gray-400 mb-2">Password</label> <input type="password" id="signup-password" required minlength="6" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="••••••••">
+        <div>
+         <label class="block text-sm text-gray-400 mb-2">Password</label> <input type="password" id="signup-password" required minlength="6" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="••••••••">
         </div><button type="submit" class="w-full py-3 btn-gold rounded-xl text-navy-900 font-semibold"> Create Account </button>
        </form>
        <p class="mt-6 text-center text-gray-500 text-sm">Already have an account? <button id="show-login" class="text-gold-500 hover:text-gold-400">Sign In</button></p>
@@ -181,7 +191,8 @@
       <div id="forgot-form" class="hidden">
        <h2 class="text-xl font-semibold text-white mb-6">Reset Password</h2>
        <form id="forgot-submit" class="space-y-4">
-        <div><label class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="forgot-email" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="trader@example.com">
+        <div>
+         <label class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="forgot-email" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white placeholder-gray-500" placeholder="trader@example.com">
         </div><button type="submit" class="w-full py-3 btn-gold rounded-xl text-navy-900 font-semibold"> Send Reset Link </button>
        </form>
        <p class="mt-6 text-center text-gray-500 text-sm">Remember your password? <button id="show-login-2" class="text-gold-500 hover:text-gold-400">Sign In</button></p>
@@ -190,45 +201,58 @@
      <p class="text-center text-gray-600 text-xs mt-6 animate-fade-in">Demo: Use any email/password to sign in</p>
     </div>
    </div><!-- Dashboard -->
-   <div id="dashboard" class="hidden min-h-full w-full"><!-- Header -->
+   <div id="dashboard" class="hidden min-h-full w-full">
+    <!-- Header -->
     <header class="sticky top-0 z-50 glass-card border-b border-navy-700">
      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
        <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-500 to-gold-400 flex items-center justify-center">
-         <svg class="w-5 h-5 text-navy-900" fill="currentColor" viewbox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
+         <svg class="w-5 h-5 text-navy-900" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
          </svg>
         </div><span id="dashboard-title" class="text-xl font-bold text-white hidden sm:block">ProForex Journal</span>
        </div><!-- Navigation -->
-       <nav class="hidden md:flex items-center gap-8"><button class="nav-item active text-white font-medium" data-view="overview">Overview</button> <button class="nav-item text-gray-400 hover:text-white" data-view="journal">Journal</button> <button class="nav-item text-gray-400 hover:text-white" data-view="analytics">Analytics</button> <button class="nav-item text-gray-400 hover:text-white" data-view="history">History</button>
+       <nav class="hidden md:flex items-center gap-8">
+        <button class="nav-item active text-white font-medium" data-view="overview">Overview</button> <button class="nav-item text-gray-400 hover:text-white" data-view="journal">Journal</button> <button class="nav-item text-gray-400 hover:text-white" data-view="analytics">Analytics</button> <button class="nav-item text-gray-400 hover:text-white" data-view="history">History</button>
        </nav><!-- User Menu -->
-       <div class="flex items-center gap-4"><button id="add-trade-btn" class="btn-gold px-4 py-2 rounded-lg text-navy-900 font-medium text-sm flex items-center gap-2">
-         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+       <div class="flex items-center gap-4">
+        <button id="add-trade-btn" class="btn-gold px-4 py-2 rounded-lg text-navy-900 font-medium text-sm flex items-center gap-2">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
          </svg><span class="hidden sm:inline">Add Trade</span> </button>
-        <div class="relative"><button id="user-menu-btn" class="flex items-center gap-2 text-gray-400 hover:text-white">
-          <div class="w-8 h-8 rounded-full bg-navy-700 flex items-center justify-center"><span id="user-initial" class="text-sm font-medium">T</span>
+        <div class="relative">
+         <button id="user-menu-btn" class="flex items-center gap-2 text-gray-400 hover:text-white">
+          <div class="w-8 h-8 rounded-full bg-navy-700 flex items-center justify-center">
+           <span id="user-initial" class="text-sm font-medium">T</span>
           </div>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg></button>
          <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 glass-card rounded-xl py-2 shadow-xl">
           <div class="px-4 py-2 border-b border-navy-700">
            <p id="user-name-display" class="text-white font-medium text-sm">Trader</p>
            <p id="user-email-display" class="text-gray-500 text-xs">trader@example.com</p>
           </div><button id="export-csv" class="w-full px-4 py-2 text-left text-gray-400 hover:text-white hover:bg-navy-800 text-sm flex items-center gap-2">
-           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
            </svg> Export CSV </button> <button id="logout-btn" class="w-full px-4 py-2 text-left text-red-400 hover:text-red-300 hover:bg-navy-800 text-sm flex items-center gap-2">
-           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
            </svg> Sign Out </button>
          </div>
         </div>
        </div>
       </div>
      </div><!-- Mobile Nav -->
-     <div class="md:hidden border-t border-navy-700 px-4 py-2 flex justify-around"><button class="nav-item active text-white text-sm py-2" data-view="overview">Overview</button> <button class="nav-item text-gray-400 text-sm py-2" data-view="journal">Journal</button> <button class="nav-item text-gray-400 text-sm py-2" data-view="analytics">Analytics</button> <button class="nav-item text-gray-400 text-sm py-2" data-view="history">History</button>
+     <div class="md:hidden border-t border-navy-700 px-4 py-2 flex justify-around">
+      <button class="nav-item active text-white text-sm py-2" data-view="overview">Overview</button> <button class="nav-item text-gray-400 text-sm py-2" data-view="journal">Journal</button> <button class="nav-item text-gray-400 text-sm py-2" data-view="analytics">Analytics</button> <button class="nav-item text-gray-400 text-sm py-2" data-view="history">History</button>
      </div>
     </header><!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6"><!-- Overview View -->
-     <div id="view-overview" class="space-y-6"><!-- P/L Summary Cards -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+     <!-- Overview View -->
+     <div id="view-overview" class="space-y-6">
+      <!-- P/L Summary Cards -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
        <div class="glass-card metric-card rounded-xl p-4 animate-slide-up stagger-1">
         <p class="text-gray-500 text-xs uppercase tracking-wider mb-1">Today's P/L</p>
@@ -254,7 +278,8 @@
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
        <div class="glass-card rounded-xl p-4 text-center">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-profit/20 flex items-center justify-center">
-         <svg class="w-5 h-5 text-profit" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+         <svg class="w-5 h-5 text-profit" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
          </svg>
         </div>
         <p id="win-rate" class="text-xl font-bold text-white font-mono">0%</p>
@@ -262,7 +287,8 @@
        </div>
        <div class="glass-card rounded-xl p-4 text-center">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-gold-500/20 flex items-center justify-center">
-         <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+         <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
          </svg>
         </div>
         <p id="avg-rr" class="text-xl font-bold text-white font-mono">0:0</p>
@@ -270,7 +296,8 @@
        </div>
        <div class="glass-card rounded-xl p-4 text-center">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-loss/20 flex items-center justify-center">
-         <svg class="w-5 h-5 text-loss" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+         <svg class="w-5 h-5 text-loss" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
          </svg>
         </div>
         <p id="max-drawdown" class="text-xl font-bold text-white font-mono">0%</p>
@@ -278,7 +305,8 @@
        </div>
        <div class="glass-card rounded-xl p-4 text-center">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-blue-500/20 flex items-center justify-center">
-         <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+         <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
          </svg>
         </div>
         <p id="total-trades" class="text-xl font-bold text-white font-mono">0</p>
@@ -286,7 +314,8 @@
        </div>
        <div class="glass-card rounded-xl p-4 text-center">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-purple-500/20 flex items-center justify-center">
-         <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
          </svg>
         </div>
         <p id="avg-risk" class="text-xl font-bold text-white font-mono">0%</p>
@@ -294,14 +323,16 @@
        </div>
        <div class="glass-card rounded-xl p-4 text-center">
         <div class="w-10 h-10 mx-auto mb-2 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-         <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+         <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
          </svg>
         </div>
         <p id="avg-r-multiple" class="text-xl font-bold text-white font-mono">0R</p>
         <p class="text-xs text-gray-500">Avg R-Multiple</p>
        </div>
       </div><!-- Charts Row -->
-      <div class="grid lg:grid-cols-2 gap-6"><!-- Equity Curve -->
+      <div class="grid lg:grid-cols-2 gap-6">
+       <!-- Equity Curve -->
        <div class="glass-card rounded-xl p-6">
         <h3 class="text-lg font-semibold text-white mb-4">Equity Curve</h3>
         <div class="h-64">
@@ -343,59 +374,78 @@
      <div id="view-journal" class="hidden">
       <div class="glass-card rounded-xl p-6 max-w-3xl mx-auto">
        <h2 class="text-2xl font-bold text-white mb-6">Add New Trade</h2>
-       <form id="trade-form" class="space-y-6"><!-- Basic Info -->
+       <form id="trade-form" class="space-y-6">
+        <!-- Basic Info -->
         <div class="grid md:grid-cols-3 gap-4">
-         <div><label class="block text-sm text-gray-400 mb-2">Date *</label> <input type="date" id="trade-date" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Date *</label> <input type="date" id="trade-date" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Forex Pair *</label> <select id="trade-pair" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Pair</option> <option value="EURUSD">EUR/USD</option> <option value="GBPUSD">GBP/USD</option> <option value="USDJPY">USD/JPY</option> <option value="XAUUSD">XAU/USD (Gold)</option> <option value="AUDUSD">AUD/USD</option> <option value="USDCAD">USD/CAD</option> <option value="USDCHF">USD/CHF</option> <option value="NZDUSD">NZD/USD</option> <option value="EURJPY">EUR/JPY</option> <option value="GBPJPY">GBP/JPY</option> <option value="EURGBP">EUR/GBP</option> <option value="BTCUSD">BTC/USD</option> <option value="US30">US30</option> <option value="NAS100">NAS100</option> </select>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Forex Pair *</label> <select id="trade-pair" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Pair</option> <option value="EURUSD">EUR/USD</option> <option value="GBPUSD">GBP/USD</option> <option value="USDJPY">USD/JPY</option> <option value="XAUUSD">XAU/USD (Gold)</option> <option value="AUDUSD">AUD/USD</option> <option value="USDCAD">USD/CAD</option> <option value="USDCHF">USD/CHF</option> <option value="NZDUSD">NZD/USD</option> <option value="EURJPY">EUR/JPY</option> <option value="GBPJPY">GBP/JPY</option> <option value="EURGBP">EUR/GBP</option> <option value="BTCUSD">BTC/USD</option> <option value="US30">US30</option> <option value="NAS100">NAS100</option> </select>
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Trade Type *</label> <select id="trade-type" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Type</option> <option value="BUY">Buy (Long)</option> <option value="SELL">Sell (Short)</option> </select>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Trade Type *</label> <select id="trade-type" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Type</option> <option value="BUY">Buy (Long)</option> <option value="SELL">Sell (Short)</option> </select>
          </div>
         </div><!-- Price Info -->
         <div class="grid md:grid-cols-4 gap-4">
-         <div><label class="block text-sm text-gray-400 mb-2">Entry Price *</label> <input type="number" step="0.00001" id="trade-entry" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.08500">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Entry Price *</label> <input type="number" step="0.00001" id="trade-entry" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.08500">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Stop Loss *</label> <input type="number" step="0.00001" id="trade-sl" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.08300">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Stop Loss *</label> <input type="number" step="0.00001" id="trade-sl" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.08300">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Take Profit *</label> <input type="number" step="0.00001" id="trade-tp" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.08900">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Take Profit *</label> <input type="number" step="0.00001" id="trade-tp" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.08900">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Lot Size *</label> <input type="number" step="0.01" id="trade-lots" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="0.10">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Lot Size *</label> <input type="number" step="0.01" id="trade-lots" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="0.10">
          </div>
         </div><!-- Risk & Result -->
         <div class="grid md:grid-cols-3 gap-4">
-         <div><label class="block text-sm text-gray-400 mb-2">Risk % *</label> <input type="number" step="0.1" id="trade-risk" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.0">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Risk % *</label> <input type="number" step="0.1" id="trade-risk" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="1.0">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Result *</label> <select id="trade-result" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Result</option> <option value="WIN">Win ✓</option> <option value="LOSS">Loss ✗</option> <option value="BREAKEVEN">Break-even →</option> </select>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Result *</label> <select id="trade-result" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Result</option> <option value="WIN">Win ✓</option> <option value="LOSS">Loss ✗</option> <option value="BREAKEVEN">Break-even →</option> </select>
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Profit/Loss ($) *</label> <input type="number" step="0.01" id="trade-pnl" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="150.00">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Profit/Loss ($) *</label> <input type="number" step="0.01" id="trade-pnl" required class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white font-mono" placeholder="150.00">
          </div>
         </div><!-- Calculated RR -->
         <div class="glass-card rounded-xl p-4 bg-navy-800/50">
-         <div class="flex items-center justify-between"><span class="text-gray-400">Calculated Risk:Reward Ratio</span> <span id="calculated-rr" class="text-xl font-bold text-gold-500 font-mono">-</span>
+         <div class="flex items-center justify-between">
+          <span class="text-gray-400">Calculated Risk:Reward Ratio</span> <span id="calculated-rr" class="text-xl font-bold text-gold-500 font-mono">-</span>
          </div>
         </div><!-- Notes Section -->
         <div class="space-y-4">
          <h3 class="text-lg font-semibold text-white">Trade Notes</h3>
          <div class="grid md:grid-cols-2 gap-4">
-          <div><label class="block text-sm text-gray-400 mb-2">Emotion</label> <select id="trade-emotion" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Emotion</option> <option value="CONFIDENT">😎 Confident</option> <option value="CALM">😌 Calm</option> <option value="ANXIOUS">😰 Anxious</option> <option value="GREEDY">🤑 Greedy</option> <option value="FEARFUL">😨 Fearful</option> <option value="FOMO">😤 FOMO</option> <option value="REVENGE">😡 Revenge Trading</option> </select>
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">Emotion</label> <select id="trade-emotion" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white"> <option value="">Select Emotion</option> <option value="CONFIDENT">😎 Confident</option> <option value="CALM">😌 Calm</option> <option value="ANXIOUS">😰 Anxious</option> <option value="GREEDY">🤑 Greedy</option> <option value="FEARFUL">😨 Fearful</option> <option value="FOMO">😤 FOMO</option> <option value="REVENGE">😡 Revenge Trading</option> </select>
           </div>
-          <div><label class="block text-sm text-gray-400 mb-2">Setup Type</label> <input type="text" id="trade-setup" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white" placeholder="e.g., Break &amp; Retest, Support Bounce">
+          <div>
+           <label class="block text-sm text-gray-400 mb-2">Setup Type</label> <input type="text" id="trade-setup" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white" placeholder="e.g., Break &amp; Retest, Support Bounce">
           </div>
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Mistake (if any)</label> <input type="text" id="trade-mistake" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white" placeholder="e.g., Entered too early, Moved SL">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Mistake (if any)</label> <input type="text" id="trade-mistake" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white" placeholder="e.g., Entered too early, Moved SL">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Lesson Learned</label> <input type="text" id="trade-lesson" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white" placeholder="e.g., Wait for confirmation candle">
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Lesson Learned</label> <input type="text" id="trade-lesson" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white" placeholder="e.g., Wait for confirmation candle">
          </div>
-         <div><label class="block text-sm text-gray-400 mb-2">Additional Notes</label> <textarea id="trade-notes" rows="3" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white resize-none" placeholder="Any additional observations..."></textarea>
+         <div>
+          <label class="block text-sm text-gray-400 mb-2">Additional Notes</label> <textarea id="trade-notes" rows="3" class="w-full px-4 py-3 bg-navy-800 border border-navy-600 rounded-xl text-white resize-none" placeholder="Any additional observations..."></textarea>
          </div>
         </div><!-- Submit Buttons -->
-        <div class="flex gap-4"><button type="submit" id="submit-trade-btn" class="flex-1 py-4 btn-gold rounded-xl text-navy-900 font-semibold text-lg"> Save Trade </button> <button type="button" id="cancel-trade-btn" class="px-6 py-4 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium"> Cancel </button>
+        <div class="flex gap-4">
+         <button type="submit" id="submit-trade-btn" class="flex-1 py-4 btn-gold rounded-xl text-navy-900 font-semibold text-lg"> Save Trade </button> <button type="button" id="cancel-trade-btn" class="px-6 py-4 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium"> Cancel </button>
         </div>
        </form>
       </div>
      </div><!-- Analytics View -->
      <div id="view-analytics" class="hidden space-y-6">
-      <div class="grid lg:grid-cols-2 gap-6"><!-- Monthly Performance -->
+      <div class="grid lg:grid-cols-2 gap-6">
+       <!-- Monthly Performance -->
        <div class="glass-card rounded-xl p-6">
         <h3 class="text-lg font-semibold text-white mb-4">Monthly Performance</h3>
         <div class="h-64">
@@ -409,7 +459,8 @@
         </div>
        </div>
       </div>
-      <div class="grid lg:grid-cols-2 gap-6"><!-- Drawdown Chart -->
+      <div class="grid lg:grid-cols-2 gap-6">
+       <!-- Drawdown Chart -->
        <div class="glass-card rounded-xl p-6">
         <h3 class="text-lg font-semibold text-white mb-4">Drawdown Analysis</h3>
         <div class="h-64">
@@ -425,9 +476,11 @@
       </div>
      </div><!-- History View -->
      <div id="view-history" class="hidden">
-      <div class="glass-card rounded-xl p-6"><!-- Filters -->
+      <div class="glass-card rounded-xl p-6">
+       <!-- Filters -->
        <div class="flex flex-wrap gap-4 mb-6">
-        <div class="flex-1 min-w-[200px]"><input type="text" id="search-trades" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white placeholder-gray-500" placeholder="🔍 Search trades...">
+        <div class="flex-1 min-w-[200px]">
+         <input type="text" id="search-trades" class="w-full px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white placeholder-gray-500" placeholder="🔍 Search trades...">
         </div><select id="filter-pair" class="px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="">All Pairs</option> <option value="EURUSD">EUR/USD</option> <option value="GBPUSD">GBP/USD</option> <option value="XAUUSD">XAU/USD</option> <option value="USDJPY">USD/JPY</option> </select> <select id="filter-result" class="px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <option value="">All Results</option> <option value="WIN">Wins</option> <option value="LOSS">Losses</option> <option value="BREAKEVEN">Break-even</option> </select> <input type="date" id="filter-date-from" class="px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white"> <input type="date" id="filter-date-to" class="px-4 py-2 bg-navy-800 border border-navy-600 rounded-lg text-white">
        </div><!-- Table -->
        <div class="overflow-x-auto">
@@ -463,11 +516,13 @@
     <div class="glass-card rounded-2xl p-6 max-w-lg w-full max-h-[90%] overflow-y-auto">
      <div class="flex items-center justify-between mb-4">
       <h3 class="text-xl font-bold text-white">Trade Details</h3><button id="close-modal" class="text-gray-400 hover:text-white">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
        </svg></button>
      </div>
      <div id="modal-content"></div>
-     <div class="mt-6 flex gap-3"><button id="delete-trade-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete Trade</button> <button id="close-modal-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Close</button>
+     <div class="mt-6 flex gap-3">
+      <button id="delete-trade-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete Trade</button> <button id="close-modal-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Close</button>
      </div>
     </div>
    </div><!-- Toast Notification -->
@@ -478,7 +533,8 @@
     <div class="glass-card rounded-2xl p-6 max-w-sm w-full">
      <h3 class="text-xl font-bold text-white mb-4">Confirm Delete</h3>
      <p class="text-gray-400 mb-6">Are you sure you want to delete this trade? This action cannot be undone.</p>
-     <div class="flex gap-3"><button id="confirm-delete-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete</button> <button id="cancel-delete-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Cancel</button>
+     <div class="flex gap-3">
+      <button id="confirm-delete-btn" class="flex-1 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white font-medium">Delete</button> <button id="cancel-delete-btn" class="flex-1 py-3 bg-navy-700 hover:bg-navy-600 rounded-xl text-white font-medium">Cancel</button>
      </div>
     </div>
    </div>
@@ -552,11 +608,18 @@
     };
     
     // Initialize Data SDK
+    let sdkReady = false;
     async function initDataSdk() {
       if (window.dataSdk) {
-        const result = await window.dataSdk.init(dataHandler);
-        if (!result.isOk) {
-          showToast('Failed to initialize data storage', 'error');
+        try {
+          const result = await window.dataSdk.init(dataHandler);
+          if (result.isOk) {
+            sdkReady = true;
+          } else {
+            showToast('Failed to initialize data storage', 'error');
+          }
+        } catch (err) {
+          console.error('SDK init error:', err);
         }
       }
     }
@@ -1333,6 +1396,12 @@
         e.preventDefault();
         if (isLoading) return;
         
+        // Wait for SDK to be ready
+        if (!window.dataSdk || !sdkReady) {
+          showToast('Data storage not ready. Please try again.', 'error');
+          return;
+        }
+        
         if (trades.length >= 999) {
           showToast('Maximum trade limit reached (999)', 'error');
           return;
@@ -1363,7 +1432,7 @@
           createdAt: new Date().toISOString()
         };
         
-        if (window.dataSdk) {
+        try {
           const result = await window.dataSdk.create(trade);
           if (result.isOk) {
             showToast('Trade saved successfully!');
@@ -1373,7 +1442,11 @@
             switchView('overview');
           } else {
             showToast('Failed to save trade', 'error');
+            console.error('Create error:', result.error);
           }
+        } catch (err) {
+          showToast('Error saving trade', 'error');
+          console.error('Submit error:', err);
         }
         
         isLoading = false;
@@ -1443,5 +1516,5 @@
       applyConfig();
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4929bfe10385b3',t:'MTc3MjIxMDgzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4958917150b2d8',t:'MTc3MjIxMjc1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
