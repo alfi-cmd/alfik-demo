@@ -551,39 +551,43 @@
       }
     };
     
-    // Initialize Data SDK with proper waiting
+    // Trade Storage (localStorage + Data SDK)
+    function getTrades() {
+      const trades = localStorage.getItem('proforex_trades');
+      return trades ? JSON.parse(trades) : [];
+    }
+    
+    function saveTrades(tradesData) {
+      localStorage.setItem('proforex_trades', JSON.stringify(tradesData));
+    }
+    
+    // Initialize Data SDK
     let sdkReady = false;
-    
-    async function waitForSdk() {
-      let attempts = 0;
-      while (!window.dataSdk && attempts < 30) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-        attempts++;
-      }
-      return window.dataSdk;
-    }
-    
     async function initDataSdk() {
-      try {
-        const sdk = await waitForSdk();
-        if (!sdk) {
-          console.error('Data SDK failed to load');
-          return;
+      if (window.dataSdk) {
+        try {
+          const result = await window.dataSdk.init(dataHandler);
+          if (result.isOk) {
+            sdkReady = true;
+            // Load trades from localStorage into SDK
+            const localTrades = getTrades();
+            for (const trade of localTrades) {
+              if (!trade.__backendId) {
+                const createResult = await window.dataSdk.create(trade);
+                if (createResult.isOk) {
+                  trade.__backendId = 'trade_' + Date.now();
+                }
+              }
+            }
+          } else {
+            showToast('Note: Working in offline mode', 'info');
+          }
+        } catch (err) {
+          console.error('SDK init error:', err);
         }
-        
-        const result = await sdk.init(dataHandler);
-        if (result && result.isOk) {
-          sdkReady = true;
-          console.log('Data SDK initialized successfully');
-        } else {
-          console.error('SDK init failed:', result?.error);
-        }
-      } catch (err) {
-        console.error('SDK init error:', err);
       }
     }
     
-    // Start initialization immediately
     initDataSdk();
     
     // User Management (Demo - uses localStorage for user auth simulation)
@@ -1259,6 +1263,14 @@
       const session = getCurrentSession();
       if (session) {
         showDashboard(session);
+        // Load trades from localStorage
+        const allTrades = getTrades();
+        trades = allTrades.filter(t => t.userId === session.id);
+        updateDashboard();
+        updateCharts();
+        updateRecentTrades();
+        updateTradeHistory();
+        updateAnalytics();
       }
       
       // Set today's date
@@ -1356,18 +1368,6 @@
         e.preventDefault();
         if (isLoading) return;
         
-        // Wait for SDK to be ready
-        let attempts = 0;
-        while (!sdkReady && attempts < 20) {
-          await new Promise(resolve => setTimeout(resolve, 100));
-          attempts++;
-        }
-        
-        if (!sdkReady || !window.dataSdk) {
-          showToast('Data storage not ready. Please try again.', 'error');
-          return;
-        }
-        
         if (trades.length >= 999) {
           showToast('Maximum trade limit reached (999)', 'error');
           return;
@@ -1399,17 +1399,30 @@
         };
         
         try {
-          const result = await window.dataSdk.create(trade);
-          if (result.isOk) {
-            showToast('Trade saved successfully!');
-            document.getElementById('trade-form').reset();
-            document.getElementById('trade-date').valueAsDate = new Date();
-            document.getElementById('calculated-rr').textContent = '-';
-            switchView('overview');
-          } else {
-            showToast('Failed to save trade', 'error');
-            console.error('Create error:', result.error);
+          // Save to localStorage first
+          const allTrades = getTrades();
+          trade.__backendId = 'trade_' + Date.now();
+          allTrades.push(trade);
+          saveTrades(allTrades);
+          
+          // Also save to Data SDK if available
+          if (window.dataSdk && sdkReady) {
+            const result = await window.dataSdk.create(trade);
+            if (!result.isOk) {
+              console.error('SDK create error:', result.error);
+            }
           }
+          
+          trades.push(trade);
+          updateDashboard();
+          updateCharts();
+          updateRecentTrades();
+          
+          showToast('Trade saved successfully!');
+          document.getElementById('trade-form').reset();
+          document.getElementById('trade-date').valueAsDate = new Date();
+          document.getElementById('calculated-rr').textContent = '-';
+          switchView('overview');
         } catch (err) {
           showToast('Error saving trade', 'error');
           console.error('Submit error:', err);
@@ -1455,19 +1468,30 @@
         btn.textContent = 'Deleting...';
         btn.disabled = true;
         
-        if (window.dataSdk) {
+        // Delete from localStorage
+        let allTrades = getTrades();
+        allTrades = allTrades.filter(t => t.__backendId !== selectedTrade.__backendId);
+        saveTrades(allTrades);
+        
+        // Delete from SDK if available
+        if (window.dataSdk && sdkReady) {
           const result = await window.dataSdk.delete(selectedTrade);
-          if (result.isOk) {
-            showToast('Trade deleted');
-          } else {
-            showToast('Failed to delete trade', 'error');
+          if (!result.isOk) {
+            console.error('SDK delete error:', result.error);
           }
         }
+        
+        // Update trades list
+        trades = trades.filter(t => t.__backendId !== selectedTrade.__backendId);
+        updateDashboard();
+        updateCharts();
+        updateRecentTrades();
         
         isLoading = false;
         btn.textContent = 'Delete';
         btn.disabled = false;
         document.getElementById('delete-confirm-modal').classList.add('hidden');
+        showToast('Trade deleted');
         selectedTrade = null;
       });
       
@@ -1482,5 +1506,5 @@
       applyConfig();
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c185442c0b2d8',t:'MTc3MjI0MTU4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4c21109267b2d8',t:'MTc3MjI0MTkzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
